@@ -83,8 +83,8 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[calc(100svh-4rem)] sm:min-h-[calc(100svh-4.5rem)] lg:h-[calc(100svh-4.5rem)] mt-16 sm:mt-[4.5rem] flex flex-col justify-start lg:justify-center overflow-hidden">
-      {/* ─── Edge-to-Edge Background Video Layer ─── */}
+    <section className="relative w-full min-h-[100svh] lg:h-[100svh] flex flex-col justify-start lg:justify-center overflow-hidden">
+      {/* ─── Edge-to-Edge Background Video Layer (Begins behind transparent navbar) ─── */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none -z-10">
         <video
           ref={videoRef}
@@ -106,7 +106,7 @@ export function Hero() {
       </div>
 
       {/* ─── Hero Content Overlay (Above the Video, Left-Aligned on Desktop to reveal bottles) ─── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center lg:items-start text-center lg:text-left pt-5 pb-4 sm:pt-8 sm:pb-6 lg:py-0 lg:my-auto">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center lg:items-start text-center lg:text-left pt-24 pb-4 sm:pt-28 sm:pb-6 lg:py-0 lg:my-auto">
         <div className="w-full max-w-lg lg:max-w-[380px] xl:max-w-[450px]">
           {/* Pill Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full border border-sky-300/70 bg-white/90 backdrop-blur-md shadow-sm mb-3 sm:mb-4">

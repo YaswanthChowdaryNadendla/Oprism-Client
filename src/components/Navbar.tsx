@@ -14,7 +14,7 @@ export function Navbar() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 60);
+          setScrolled(window.scrollY > 80);
           ticking = false;
         });
         ticking = true;
@@ -30,26 +30,16 @@ export function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 py-4 sm:py-5 transition-all duration-300 ease-in-out ${
-          isMenuOpen
-            ? "bg-transparent border-b border-transparent shadow-none"
-            : scrolled
-            ? "border-b shadow-[0_4px_20px_-2px_rgba(15,92,99,0.05)]"
-            : "bg-transparent border-b border-transparent shadow-none"
-        }`}
-        style={{
-          backgroundColor:
-            !isMenuOpen && scrolled ? "rgba(234, 247, 242, 0.88)" : "transparent",
-          borderColor:
-            !isMenuOpen && scrolled ? "rgba(15, 92, 99, 0.10)" : "transparent",
-          backdropFilter: !isMenuOpen && scrolled ? "blur(16px)" : "none",
-          WebkitBackdropFilter: !isMenuOpen && scrolled ? "blur(16px)" : "none",
-        }}
-      >
+      <header className="fixed top-0 left-0 right-0 z-50 py-4 sm:py-5 bg-transparent border-none shadow-none pointer-events-none transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Left Side: [Original Oprism Logo™] × The Signature of Purity */}
-          <div className="flex items-center min-w-0">
+          <div
+            className={`flex items-center min-w-0 transition-all duration-300 ease-in-out ${
+              !scrolled || isMenuOpen
+                ? "opacity-100 translate-y-0 pointer-events-auto"
+                : "opacity-0 -translate-y-2 pointer-events-none"
+            }`}
+          >
             <Link
               to="/"
               onClick={() => {
@@ -96,7 +86,7 @@ export function Navbar() {
           {/* Extreme Right: Animated Hamburger Menu Toggle (21st.dev by Efferd) */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="relative z-50 p-2 sm:p-2.5 -mr-1 rounded-full text-[#323192] hover:bg-sky-100/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#323192] transition-colors cursor-pointer select-none"
+            className="pointer-events-auto relative z-50 p-2 sm:p-2.5 -mr-1 rounded-full text-[#323192] hover:bg-sky-100/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#323192] transition-colors cursor-pointer select-none"
             aria-expanded={isMenuOpen}
             aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           >
