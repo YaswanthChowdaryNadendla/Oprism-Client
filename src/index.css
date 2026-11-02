@@ -14,6 +14,8 @@
     scroll-behavior: smooth;
     color: var(--text-primary);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    min-height: 100%;
+    background-color: #dbeafe;
   }
 
   body {
@@ -21,6 +23,18 @@
     padding: 0;
     color: var(--text-primary);
     overflow-x: hidden;
+    min-height: 100vh;
+    background-image: url('./assets/gradient-21st.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #dbeafe;
+  }
+
+  #root {
+    min-height: 100vh;
+    background: transparent;
   }
 }
 

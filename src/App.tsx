@@ -34,10 +34,10 @@ export function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="relative min-h-screen text-slate-900 selection:bg-sky-200 selection:text-[#323192]">
+      <div className="relative min-h-screen text-slate-900 selection:bg-sky-200 selection:text-[#323192] bg-transparent">
         {/* ─── Global Fixed Background using gradient-21st.png ─── */}
         <div
-          className="fixed inset-0 -z-50 pointer-events-none"
+          className="fixed inset-0 z-0 pointer-events-none"
           aria-hidden="true"
           style={{
             backgroundImage: `url(${gradient21st})`,
@@ -57,7 +57,7 @@ export function App() {
 
         {/* ─── 2. Entire Website Content with seamless reveal ─── */}
         <div
-          className={`site-content relative z-10 flex flex-col min-h-screen ${!loading ? "visible" : ""}`}
+          className={`site-content relative z-10 flex flex-col min-h-screen bg-transparent ${!loading ? "visible" : ""}`}
           aria-hidden={loading}
         >
           <Navbar />
