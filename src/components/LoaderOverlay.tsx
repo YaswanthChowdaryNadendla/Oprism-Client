@@ -16,6 +16,7 @@ export interface LoaderOverlayProps {
  * - Background: Exact gradient-21st.png asset with background-size: cover & center positioning.
  * - Prism: Faceted crystalline triangle centered directly above the text.
  * - Typography: Exact brand wordmark (OPRISM) extracted from reference logo.
+ *   - Complete unclipped letter M with generous horizontal padding.
  * - Animation: Faithful 21st.dev motion-loading-fill-text animation.
  * - Trademark: Completely removed.
  * - Transition: Smooth fade-out reveal seamlessly transitioning into the homepage.
@@ -37,7 +38,7 @@ export function LoaderOverlay({ onComplete, text = "OPRISM" }: LoaderOverlayProp
           key="oprism-loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center px-6 select-none overflow-hidden"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center px-4 sm:px-6 select-none overflow-hidden"
           style={{
             backgroundImage: `url(${gradient21st})`,
             backgroundSize: "cover",
@@ -48,7 +49,7 @@ export function LoaderOverlay({ onComplete, text = "OPRISM" }: LoaderOverlayProp
           aria-label="Loading Oprism website"
         >
           {/* Main Logo Composition matching reference */}
-          <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-xl mx-auto">
+          <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-2xl mx-auto overflow-visible">
             {/* 1. Faceted Crystal Prism Triangle directly from reference */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -8 }}
@@ -65,7 +66,7 @@ export function LoaderOverlay({ onComplete, text = "OPRISM" }: LoaderOverlayProp
             </motion.div>
 
             {/* 2. 21st.dev motion-loading-fill-text wordmark animation */}
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center w-full overflow-visible">
               <MotionLoadingFillText
                 text={text}
                 onComplete={handleFillComplete}

@@ -39,20 +39,24 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  overflow: visible;
 }
 
 .fill-text-stack {
   position: relative;
   display: inline-block;
   user-select: none;
+  overflow: visible;
 }
 
 .fill-text {
   line-height: 1;
+  overflow: visible;
 }
 
 .fill-text-bg {
   position: relative;
+  overflow: visible;
 }
 
 .fill-text-fill {
@@ -63,6 +67,7 @@
   bottom: 0;
   will-change: clip-path;
   z-index: 1;
+  overflow: visible;
 }
 
 /* Smooth reveal transition for the website */
