@@ -37,12 +37,7 @@ export function Navbar() {
             >
               OPRISM
             </span>
-            <span
-              style={{ fontFamily: "'Comfortaa', sans-serif" }}
-              className="text-[10px] font-bold text-[#323192] ml-0.5 self-start"
-            >
-              &trade;
-            </span>
+            
           </div>
         </a>
 

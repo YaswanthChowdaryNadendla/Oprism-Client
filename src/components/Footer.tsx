@@ -20,12 +20,7 @@ export function Footer() {
               >
                 OPRISM
               </span>
-              <span
-                style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                className="text-[10px] font-bold text-[#323192] ml-0.5 self-start"
-              >
-                &trade;
-              </span>
+              
             </div>
             <span className="text-xs text-slate-500 font-mono ml-2 border-l border-sky-300 pl-3">
               Architectural Minerals & Surfaces

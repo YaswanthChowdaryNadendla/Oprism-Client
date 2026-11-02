@@ -28,7 +28,7 @@ export function OprismWordmark({
 
   return (
     <div
-      className={`inline-flex items-center justify-center select-none overflow-visible px-2 sm:px-4 ${className}`}
+      className={`w-full flex items-center justify-center select-none overflow-visible ${className}`}
       style={style}
       aria-label="OPRISM"
     >
@@ -37,10 +37,8 @@ export function OprismWordmark({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
-        className="h-auto overflow-visible transition-colors duration-200"
+        className="w-full h-auto block overflow-visible transition-colors duration-200"
         style={{
-          width: "clamp(200px, 78vw, 480px)",
-          maxWidth: "calc(100vw - 32px)",
           filter: isFill ? 'drop-shadow(0 2px 10px rgba(50, 49, 146, 0.22))' : undefined,
         }}
       >

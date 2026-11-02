@@ -70,16 +70,16 @@ export function MotionLoadingFillText({
   );
 
   return (
-    <div className={`fill-text-container w-full max-w-full ${className}`}>
-      <div className="fill-text-stack relative flex items-center justify-center max-w-full">
+    <div className={`fill-text-container w-full flex items-center justify-center ${className}`}>
+      <div className="fill-text-stack relative w-full flex items-center justify-center">
         {/* Layer 1: Background Layer (Faded track) */}
-        <div className="fill-text fill-text-bg max-w-full" aria-hidden={true}>
+        <div className="fill-text fill-text-bg w-full flex items-center justify-center" aria-hidden={true}>
           <OprismWordmark variant="track" />
         </div>
 
         {/* Layer 2: Foreground Layer (Filled with Motion clipPath left-to-right) */}
         <motion.div
-          className="fill-text fill-text-fill max-w-full"
+          className="fill-text fill-text-fill absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none"
           style={{ clipPath }}
           aria-label="OPRISM"
         >
