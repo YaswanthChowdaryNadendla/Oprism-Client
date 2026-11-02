@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import prismImg from "../assets/prism-crystal.png";
 
 export function Footer() {
@@ -7,11 +8,11 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Brand */}
-          <div className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3 group">
             <img
               src={prismImg}
               alt="Oprism"
-              className="w-8 h-8 object-contain drop-shadow-sm"
+              className="w-8 h-8 object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
             />
             <div className="flex items-center">
               <span
@@ -20,39 +21,35 @@ export function Footer() {
               >
                 OPRISM
               </span>
-              
             </div>
             <span className="text-xs text-slate-500 font-mono ml-2 border-l border-sky-300 pl-3">
-              Architectural Minerals & Surfaces
+              Architectural Minerals &amp; Surfaces
             </span>
-          </div>
+          </Link>
 
           {/* Links */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-slate-700">
-            <a href="#collection" className="hover:text-[#323192] transition-colors">
-              Product Collection
-            </a>
-            <a href="#services-occasions" className="hover:text-[#323192] transition-colors">
-              Services & Occasions
-            </a>
-            <a href="#about" className="hover:text-[#323192] transition-colors">
-              About Oprism
-            </a>
-            <a href="#enquiry" className="hover:text-[#323192] transition-colors">
-              Enquiry & Contact
-            </a>
-            <a href="#" className="hover:text-[#323192] transition-colors">
-              Slab Catalog (PDF)
-            </a>
+            <Link to="/" className="hover:text-[#323192] transition-colors">
+              Home
+            </Link>
+            <Link to="/about" className="hover:text-[#323192] transition-colors">
+              About
+            </Link>
+            <Link to="/services" className="hover:text-[#323192] transition-colors">
+              Services
+            </Link>
+            <Link to="/contact" className="hover:text-[#323192] transition-colors">
+              Contact
+            </Link>
           </div>
         </div>
 
         <div className="mt-10 pt-8 border-t border-sky-200/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600 font-medium">
           <div>
-            &copy; {new Date().getFullYear()} Oprism Minerals & Engineered Surfaces. All rights reserved.
+            &copy; {new Date().getFullYear()} Oprism Minerals &amp; Engineered Surfaces. All rights reserved.
           </div>
           <div className="text-slate-500 text-[11px] font-mono">
-            Elegance crafted with gradient-21st &bull; Motion 21st.dev
+            The Signature of Purity &bull; gradient-21st
           </div>
         </div>
       </div>

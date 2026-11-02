@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { TextRoll } from "./ui/text-roll";
 import prismImg from "../assets/prism-crystal.png";
@@ -10,23 +11,22 @@ export interface NavigationOverlayProps {
 }
 
 const NAV_ITEMS = [
-  { id: "home", label: "Home", href: "#" },
-  { id: "collection", label: "Product Collection", href: "#collection" },
-  { id: "services", label: "Services & Occasions", href: "#services-occasions" },
-  { id: "about", label: "About Us", href: "#about" },
-  { id: "enquiry", label: "Enquiry & Contact", href: "#enquiry" },
+  { id: "home", label: "Home", to: "/" },
+  { id: "about", label: "About", to: "/about" },
+  { id: "services", label: "Services", to: "/services" },
+  { id: "contact", label: "Contact", to: "/contact" },
 ];
 
 /**
  * NavigationOverlay
  *
  * Immersive full-screen navigation overlay for Oprism:
- * - Powered by gradient-21st.png with backdrop-blur
- * - Clean, minimal display featuring solely the five large animated text links
+ * - Powered by gradient-21st.png with frosted glass backdrop-blur
+ * - Features the four primary routes: Home (/), About (/about), Services (/services), Contact (/contact)
  * - Uses exact 21st.dev Text Roll component for each navigation item
  * - Staggered entrance animation when opening
- * - Smooth-scrolls to page sections and closes on selection
- * - Accessible: Escape key handler, background scroll lock, ARIA labels
+ * - Automatically closes upon route selection
+ * - Accessible: Escape key handler, background scroll lock, ARIA modal attributes
  */
 export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
   // Prevent background scrolling while the overlay is open
@@ -51,19 +51,6 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    onClose();
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -83,7 +70,7 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
           aria-modal="true"
           aria-label="Navigation Menu"
         >
-          {/* Subtle frosted glass overlay for high text contrast */}
+          {/* Frosted glass overlay for high text contrast */}
           <div
             className="absolute inset-0 bg-white/60 backdrop-blur-2xl pointer-events-none"
             aria-hidden="true"
@@ -113,17 +100,23 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
                   }}
                   className="group"
                 >
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="inline-block text-slate-800 hover:text-[#323192] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#323192] rounded-lg"
+                  <NavLink
+                    to={item.to}
+                    onClick={onClose}
+                    className={({ isActive }) =>
+                      `inline-block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#323192] rounded-lg ${
+                        isActive
+                          ? "text-[#323192]"
+                          : "text-slate-800 hover:text-[#323192]"
+                      }`
+                    }
                   >
                     <TextRoll
-                      className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#0f172a] group-hover:text-[#323192] transition-colors"
+                      className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight group-hover:text-[#323192] transition-colors"
                     >
                       {item.label}
                     </TextRoll>
-                  </a>
+                  </NavLink>
                 </motion.li>
               ))}
             </ul>
@@ -132,7 +125,7 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
           {/* Brand Identity Footer */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.4 } }}
+            animate={{ opacity: 1, y: 0, transition: { delay: 0.45, duration: 0.4 } }}
             exit={{ opacity: 0 }}
             className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-sky-300/40 text-xs text-slate-600 max-w-4xl mx-auto w-full"
           >

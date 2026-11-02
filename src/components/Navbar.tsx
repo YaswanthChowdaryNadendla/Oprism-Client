@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import prismImg from "../assets/prism-crystal.png";
 import { OprismWordmark } from "./ui/oprism-wordmark";
 import { MenuToggleIcon } from "./ui/menu-toggle";
@@ -28,14 +29,10 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Left Side: [Original Oprism Logo™] × The Signature of Purity */}
           <div className="flex items-center min-w-0">
-            <a
-              href="#"
-              onClick={(e) => {
-                if (isMenuOpen) {
-                  e.preventDefault();
-                  setIsMenuOpen(false);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }
+            <Link
+              to="/"
+              onClick={() => {
+                if (isMenuOpen) setIsMenuOpen(false);
               }}
               className="flex items-center group min-w-0"
               aria-label="Oprism Home - The Signature of Purity"
@@ -72,7 +69,7 @@ export function Navbar() {
               <span className="inline-block text-[10px] sm:text-xs md:text-sm font-medium tracking-normal text-slate-600 group-hover:text-slate-800 transition-colors truncate whitespace-nowrap">
                 The Signature of Purity
               </span>
-            </a>
+            </Link>
           </div>
 
           {/* Extreme Right: Animated Hamburger Menu Toggle (21st.dev by Efferd) */}
