@@ -59,7 +59,7 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
           exit={{ opacity: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
-          className="fixed inset-0 z-40 flex flex-col justify-center px-6 sm:px-12 md:px-16 py-12 overflow-y-auto"
+          className="fixed inset-0 z-40 flex items-center justify-center p-4 sm:p-6 md:p-8 min-h-[100dvh] overflow-y-auto overflow-x-hidden"
           style={{
             backgroundImage: `url(${gradient21st})`,
             backgroundSize: "cover",
@@ -76,9 +76,14 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
             aria-hidden="true"
           />
 
-          {/* Main Navigation List */}
-          <nav className="relative z-10 flex flex-col justify-center max-w-4xl mx-auto w-full">
-            <ul className="flex flex-col gap-6 sm:gap-8 md:gap-10">
+          {/* Main Navigation List - Horizontally & Vertically Centered */}
+          <nav className="relative z-10 w-full flex flex-col items-center justify-center my-auto py-6">
+            <ul
+              className="flex flex-col items-center justify-center text-center w-full"
+              style={{
+                gap: "clamp(1.25rem, 3.5vh, 2.75rem)",
+              }}
+            >
               {NAV_ITEMS.map((item, index) => (
                 <motion.li
                   key={item.id}
@@ -98,15 +103,20 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
                     y: 12,
                     transition: { duration: 0.2 },
                   }}
-                  className="group"
+                  className="flex items-center justify-center w-full text-center"
                 >
                   <NavLink
                     to={item.to}
                     onClick={onClose}
-                    className="inline-block text-[#0B1F3B] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0B1F3B] rounded-lg"
+                    className="group inline-flex items-center justify-center text-center text-[#0B1F3B] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0B1F3B] rounded-2xl px-6 py-2 transition-transform duration-200 active:scale-95"
                   >
                     <TextRoll
-                      className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#0B1F3B]"
+                      center
+                      className="font-bold tracking-tight text-[#0B1F3B] text-center"
+                      style={{
+                        fontSize: "clamp(2.25rem, 6vw, 4.75rem)",
+                        lineHeight: 1.1,
+                      }}
                     >
                       {item.label}
                     </TextRoll>

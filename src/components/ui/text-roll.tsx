@@ -11,6 +11,7 @@ export interface TextRollProps {
   className?: string
   center?: boolean
   duration?: number
+  style?: React.CSSProperties
 }
 
 /**
@@ -24,21 +25,23 @@ export function TextRoll({
   className,
   center = false,
   duration = 0.4,
+  style,
 }: TextRollProps) {
   return (
     <motion.span
       initial="initial"
       whileHover="hovered"
       className={cn(
-        "relative block overflow-hidden",
+        "relative inline-block overflow-hidden text-center",
         className
       )}
       style={{
         lineHeight: 1,
+        ...style,
       }}
     >
       {/* Top Text (Slides up) */}
-      <div className="select-none">
+      <div className="select-none text-center">
         {children.split("").map((l, i) => {
           const delay = center
             ? STAGGER * Math.abs(i - (children.length - 1) / 2)
@@ -69,7 +72,7 @@ export function TextRoll({
       </div>
 
       {/* Bottom Text (Slides in from bottom) */}
-      <div className="absolute inset-0 select-none pointer-events-none" aria-hidden="true">
+      <div className="absolute inset-0 select-none pointer-events-none text-center" aria-hidden="true">
         {children.split("").map((l, i) => {
           const delay = center
             ? STAGGER * Math.abs(i - (children.length - 1) / 2)
