@@ -11,21 +11,21 @@ export function Home() {
       <Hero />
 
       {/* 2. Events We Serve Section Heading with Connected Arrow */}
-      <section className="pt-10 sm:pt-16 lg:pt-20 pb-10 sm:pb-14 relative z-10">
+      <section className="pt-10 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 relative z-10">
         <div className="max-w-7xl mx-auto px-5 sm:px-6">
           <div className="inline-block relative">
             <h2
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
-              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#0f172a] text-left inline-flex items-baseline"
+              className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] text-left whitespace-nowrap inline-flex items-baseline"
             >
               <span>Events We</span>&nbsp;
-              <span className="text-[#323192] relative inline-flex items-baseline">
+              <span className="text-[#323192] relative inline-block">
                 Serve
                 <img
                   src={arrowImg}
                   alt=""
                   aria-hidden="true"
-                  className="absolute left-[calc(100%+0.35rem)] sm:left-[calc(100%+0.6rem)] md:left-[calc(100%+0.75rem)] -top-0.5 sm:-top-1.5 md:-top-2.5 w-20 sm:w-32 md:w-44 lg:w-52 max-w-none pointer-events-none select-none"
+                  className="absolute left-[calc(100%+0.25rem)] sm:left-[calc(100%+0.35rem)] top-[36%] sm:top-[38%] w-20 sm:w-32 md:w-44 lg:w-48 max-w-none pointer-events-none select-none"
                 />
               </span>
             </h2>
