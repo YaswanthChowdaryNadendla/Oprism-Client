@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Hero } from "../components/Hero";
-import { ProductCollection } from "../components/ProductCollection";
 
 export function Home() {
   return (
@@ -22,11 +21,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* 3. Featured Product Collection */}
-      <ProductCollection />
-
-      {/* 4. Bottom Gateway Banner */}
-      <section className="py-20 relative z-10">
+      {/* 3. Bottom Gateway Banner */}
+      <section className="pt-8 sm:pt-12 pb-20 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-r from-[#323192] to-[#1e1e66] text-white text-center relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-80 h-80 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
