@@ -3,9 +3,9 @@ import { motion, useSpring, useTransform } from "framer-motion";
 import { OprismWordmark } from "./oprism-wordmark";
 
 export interface MotionLoadingFillTextProps {
-  /** Text to display (defaults to "OPRISM") */
+  /** Optional text prop for compatibility (defaults to OPRISM) */
   text?: string;
-  /** Callback fired once fill animation reaches 100% */
+  /** Optional callback fired once fill animation reaches 100% */
   onComplete?: () => void;
   /** Optional container class */
   className?: string;
@@ -17,7 +17,6 @@ export interface MotionLoadingFillTextProps {
  * using spring physics to drive the fill smoothly from 0 to 1.
  */
 function useFillProgress(onComplete?: () => void) {
-  // Spring-driven progress value following original 21st.dev component
   const progress = useSpring(0, { stiffness: 90, damping: 20 });
   const hasTriggeredComplete = useRef(false);
 
@@ -53,10 +52,10 @@ function useFillProgress(onComplete?: () => void) {
  * Core animation structure preserved:
  * - Two stacked layers: background track + foreground fill
  * - Motion-driven `clipPath` inset: `inset(0 100% 0 0)` -> `inset(0 0% 0 0)`
- * - Replaces default text with OPRISM matching reference logo typography
+ * - Authentic OPRISM brand wordmark extracted directly from the reference logo
+ * - Completely removes any trademark symbol
  */
 export function MotionLoadingFillText({
-  text = "OPRISM",
   onComplete,
   className = "",
 }: MotionLoadingFillTextProps) {
@@ -72,18 +71,18 @@ export function MotionLoadingFillText({
   return (
     <div className={`fill-text-container ${className}`}>
       <div className="fill-text-stack relative flex items-center justify-center">
-        {/* Layer 1: Background Layer (Faded placeholder track) */}
+        {/* Layer 1: Background Layer (Faded track) */}
         <div className="fill-text fill-text-bg" aria-hidden={true}>
-          <OprismWordmark variant="track" text={text} />
+          <OprismWordmark variant="track" />
         </div>
 
-        {/* Layer 2: Foreground Layer (Filled with Motion clipPath) */}
+        {/* Layer 2: Foreground Layer (Filled with Motion clipPath left-to-right) */}
         <motion.div
           className="fill-text fill-text-fill"
           style={{ clipPath }}
-          aria-label={text}
+          aria-label="OPRISM"
         >
-          <OprismWordmark variant="fill" text={text} />
+          <OprismWordmark variant="fill" />
         </motion.div>
       </div>
     </div>

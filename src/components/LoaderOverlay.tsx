@@ -15,8 +15,9 @@ export interface LoaderOverlayProps {
  * Full-screen loading screen powered by gradient-21st.png:
  * - Background: Exact gradient-21st.png asset with background-size: cover & center positioning.
  * - Prism: Faceted crystalline triangle centered directly above the text.
- * - Typography: Exact brand wordmark (OPRISM) in #323192.
+ * - Typography: Exact brand wordmark (OPRISM) extracted from reference logo.
  * - Animation: Faithful 21st.dev motion-loading-fill-text animation.
+ * - Trademark: Completely removed.
  * - Transition: Smooth fade-out reveal seamlessly transitioning into the homepage.
  */
 export function LoaderOverlay({ onComplete, text = "OPRISM" }: LoaderOverlayProps) {
@@ -53,12 +54,12 @@ export function LoaderOverlay({ onComplete, text = "OPRISM" }: LoaderOverlayProp
               initial={{ opacity: 0, scale: 0.95, y: -8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="relative flex items-center justify-center mb-4 sm:mb-6 drop-shadow-md"
+              className="relative flex items-center justify-center mb-2 sm:mb-3 drop-shadow-md"
             >
               <img
                 src={prismImg}
                 alt="Oprism Crystal Prism"
-                className="w-32 sm:w-44 md:w-56 lg:w-64 h-auto object-contain select-none pointer-events-none"
+                className="w-32 sm:w-44 md:w-52 lg:w-60 h-auto object-contain select-none pointer-events-none"
                 draggable={false}
               />
             </motion.div>
