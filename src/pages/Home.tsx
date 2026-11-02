@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Hero } from "../components/Hero";
+import arrowImg from "../assets/arrow.png";
 
 export function Home() {
   return (
@@ -9,20 +10,31 @@ export function Home() {
       {/* 1. Hero Section with floating Oprism crystal bottle visual & call to actions */}
       <Hero />
 
-      {/* 2. Events We Serve Section Heading */}
-      <section className="pt-12 sm:pt-16 lg:pt-20 pb-4 sm:pb-6 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2
-            style={{ fontFamily: "'Comfortaa', sans-serif" }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] text-left"
-          >
-            Events We <span className="text-[#323192]">Serve</span>
-          </h2>
+      {/* 2. Events We Serve Section Heading with Connected Arrow */}
+      <section className="pt-10 sm:pt-16 lg:pt-20 pb-10 sm:pb-14 relative z-10">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6">
+          <div className="inline-block relative">
+            <h2
+              style={{ fontFamily: "'Comfortaa', sans-serif" }}
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#0f172a] text-left inline-flex items-baseline"
+            >
+              <span>Events We</span>&nbsp;
+              <span className="text-[#323192] relative inline-flex items-baseline">
+                Serve
+                <img
+                  src={arrowImg}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute left-[calc(100%+0.35rem)] sm:left-[calc(100%+0.6rem)] md:left-[calc(100%+0.75rem)] -top-0.5 sm:-top-1.5 md:-top-2.5 w-20 sm:w-32 md:w-44 lg:w-52 max-w-none pointer-events-none select-none"
+                />
+              </span>
+            </h2>
+          </div>
         </div>
       </section>
 
       {/* 3. Bottom Gateway Banner */}
-      <section className="pt-8 sm:pt-12 pb-20 relative z-10">
+      <section className="pt-6 sm:pt-10 pb-20 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-r from-[#323192] to-[#1e1e66] text-white text-center relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-80 h-80 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
