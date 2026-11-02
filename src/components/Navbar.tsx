@@ -51,9 +51,9 @@ export function Navbar() {
               </div>
             </div>
 
-            {/* 2. A subtle multiplication symbol × */}
+            {/* 2. A subtle multiplication symbol × vertically aligned to the optical center */}
             <span
-              className="hidden min-[360px]:inline-block text-slate-400 font-light text-xs sm:text-sm md:text-base mx-1.5 sm:mx-2.5 select-none leading-none shrink-0"
+              className="hidden min-[360px]:inline-block relative -translate-y-[1.5px] sm:-translate-y-[2px] text-slate-400 font-light text-xs sm:text-sm mx-1.5 sm:mx-2.5 select-none leading-none shrink-0"
               aria-hidden="true"
             >
               ×
