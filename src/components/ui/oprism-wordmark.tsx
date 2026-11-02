@@ -36,8 +36,11 @@ export function OprismWordmark({
         viewBox="0 0 848 264"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-56 sm:w-72 md:w-88 lg:w-[420px] xl:w-[460px] h-auto overflow-visible transition-colors duration-200"
+        preserveAspectRatio="xMidYMid meet"
+        className="h-auto overflow-visible transition-colors duration-200"
         style={{
+          width: "clamp(200px, 78vw, 480px)",
+          maxWidth: "calc(100vw - 32px)",
           filter: isFill ? 'drop-shadow(0 2px 10px rgba(50, 49, 146, 0.22))' : undefined,
         }}
       >
