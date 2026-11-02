@@ -18,6 +18,7 @@ function ScrollToTop() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "Oprism - The Signature of Purity";
   }, [pathname]);
 
   return null;
