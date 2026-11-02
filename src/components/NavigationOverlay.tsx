@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { TextRoll } from "./ui/text-roll";
-import prismImg from "../assets/prism-crystal.png";
 import gradient21st from "../assets/gradient-21st.png";
 
 export interface NavigationOverlayProps {
@@ -60,7 +59,7 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
           exit={{ opacity: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
-          className="fixed inset-0 z-40 flex flex-col justify-between px-6 sm:px-12 md:px-16 pt-24 pb-8 overflow-y-auto"
+          className="fixed inset-0 z-40 flex flex-col justify-center px-6 sm:px-12 md:px-16 py-12 overflow-y-auto"
           style={{
             backgroundImage: `url(${gradient21st})`,
             backgroundSize: "cover",
@@ -78,7 +77,7 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
           />
 
           {/* Main Navigation List */}
-          <nav className="relative z-10 flex flex-col justify-center my-auto py-8 max-w-4xl mx-auto w-full">
+          <nav className="relative z-10 flex flex-col justify-center max-w-4xl mx-auto w-full">
             <ul className="flex flex-col gap-6 sm:gap-8 md:gap-10">
               {NAV_ITEMS.map((item, index) => (
                 <motion.li
@@ -116,24 +115,6 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
               ))}
             </ul>
           </nav>
-
-          {/* Brand Identity Footer */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0, transition: { delay: 0.45, duration: 0.4 } }}
-            exit={{ opacity: 0 }}
-            className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-sky-300/40 text-xs text-slate-600 max-w-4xl mx-auto w-full"
-          >
-            <div className="flex items-center gap-2.5">
-              <img src={prismImg} alt="Oprism" className="w-5 h-5 object-contain drop-shadow-sm" />
-              <span className="font-bold text-[#323192] tracking-wide">OPRISM</span>
-              <span className="text-slate-400">&bull;</span>
-              <span className="text-slate-700 font-medium">The Signature of Purity</span>
-            </div>
-            <div className="text-slate-500 font-mono text-[11px]">
-              Architectural Minerals &amp; Surfaces
-            </div>
-          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
