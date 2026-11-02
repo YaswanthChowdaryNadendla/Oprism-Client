@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, Menu, X, Sparkles } from "lucide-react";
 import prismImg from "../assets/prism-crystal.png";
+import { OprismWordmark } from "./ui/oprism-wordmark";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,24 +23,48 @@ export function Navbar() {
           : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Brand Logo & Wordmark */}
-        <a href="#" className="flex items-center gap-3 group">
-          <img
-            src={prismImg}
-            alt="Oprism"
-            className="w-8 h-8 object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
-          />
-          <div className="flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        {/* Left Side: [Original Oprism Logo™] × A New Standard of Purity */}
+        <div className="flex items-center min-w-0">
+          <a
+            href="#"
+            className="flex items-center group min-w-0"
+            aria-label="Oprism Home - A New Standard of Purity"
+          >
+            {/* 1. Original Oprism crystal + wordmark + ™ */}
+            <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+              <img
+                src={prismImg}
+                alt="Oprism Crystal"
+                className="w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-sm group-hover:scale-105 transition-transform shrink-0"
+              />
+              <div className="relative flex items-center shrink-0">
+                <div className="w-[82px] sm:w-[96px] md:w-[108px] h-auto flex items-center">
+                  <OprismWordmark variant="fill" />
+                </div>
+                <span
+                  className="text-[9px] sm:text-[10px] font-bold text-[#323192] self-start -mt-0.5 ml-0.5 select-none leading-none shrink-0"
+                  aria-label="trademark"
+                >
+                  ™
+                </span>
+              </div>
+            </div>
+
+            {/* 2. A subtle multiplication symbol × */}
             <span
-              style={{ fontFamily: "'Comfortaa', sans-serif" }}
-              className="font-bold text-xl tracking-tight text-[#323192]"
+              className="hidden min-[360px]:inline-block text-slate-400 font-light text-xs sm:text-sm md:text-base mx-1.5 sm:mx-2.5 select-none leading-none shrink-0"
+              aria-hidden="true"
             >
-              OPRISM
+              ×
             </span>
-            
-          </div>
-        </a>
+
+            {/* 3. Text: A New Standard of Purity */}
+            <span className="hidden min-[360px]:inline-block text-[10px] sm:text-xs md:text-sm font-medium tracking-normal text-slate-600 group-hover:text-slate-800 transition-colors truncate whitespace-nowrap">
+              A New Standard of Purity
+            </span>
+          </a>
+        </div>
 
         {/* Navigation Links */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
