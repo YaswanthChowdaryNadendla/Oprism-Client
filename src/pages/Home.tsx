@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Hero } from "../components/Hero";
 import { ProductCollection } from "../components/ProductCollection";
-import eventsWeServeImg from "../assets/Eventsweserve.png";
 
 export function Home() {
   return (
@@ -11,14 +10,15 @@ export function Home() {
       {/* 1. Hero Section with floating Oprism crystal bottle visual & call to actions */}
       <Hero />
 
-      {/* 2. Events We Serve Introduction Image */}
-      <section className="py-8 sm:py-12 lg:py-16 relative z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex justify-center items-center">
-          <img
-            src={eventsWeServeImg}
-            alt="Events We Serve"
-            className="w-full h-auto object-contain max-w-4xl mx-auto select-none rounded-2xl drop-shadow-sm"
-          />
+      {/* 2. Events We Serve Section Heading */}
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-4 sm:pb-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2
+            style={{ fontFamily: "'Comfortaa', sans-serif" }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] text-left"
+          >
+            Events We <span className="text-[#323192]">Serve</span>
+          </h2>
         </div>
       </section>
 
