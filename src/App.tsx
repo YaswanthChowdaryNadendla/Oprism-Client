@@ -2,65 +2,78 @@ import React, { useState, useCallback } from "react";
 import { LoaderOverlay } from "./components/LoaderOverlay";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
-import { Features } from "./components/Features";
-import { InteractiveRouter } from "./components/InteractiveRouter";
+import { ProductCollection } from "./components/ProductCollection";
+import { ServicesOccasions } from "./components/ServicesOccasions";
+import { AboutSection } from "./components/AboutSection";
+import { ContactEnquiry } from "./components/ContactEnquiry";
 import { Footer } from "./components/Footer";
+import gradient21st from "./assets/gradient-21st.png";
 
 export function App() {
   const [loading, setLoading] = useState(true);
-  const [textCase, setTextCase] = useState<"OPRISM" | "oprism">("OPRISM");
 
   const handleLoadingComplete = useCallback(() => {
     setLoading(false);
   }, []);
 
   return (
-    <>
-      {/* ─── 1. Oprism Reference Loading Animation (21st.dev motion-loading-fill-text) ─── */}
+    <div className="relative min-h-screen text-slate-900 selection:bg-sky-200 selection:text-[#323192]">
+      {/* ─── Global Fixed Background using gradient-21st.png ─── */}
+      <div
+        className="fixed inset-0 -z-50 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          backgroundImage: `url(${gradient21st})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+
+      {/* ─── 1. Full-Screen Loading Screen with identical gradient-21st background ─── */}
       {loading && (
         <LoaderOverlay
-          text={textCase}
+          text="OPRISM"
           onComplete={handleLoadingComplete}
         />
       )}
 
-      {/* ─── 2. Homepage Content with smooth reveal ─── */}
+      {/* ─── 2. Entire Website Content with seamless reveal ─── */}
       <div
-        className={`site-content min-h-screen bg-[#020617] text-slate-100 ${
-          !loading ? "visible" : ""
-        }`}
+        className={`site-content relative z-10 ${!loading ? "visible" : ""}`}
         aria-hidden={loading}
       >
         <Navbar />
         <main>
+          {/* Hero Section */}
           <Hero />
-          <InteractiveRouter />
-          <Features />
+
+          {/* Product Collection */}
+          <ProductCollection />
+
+          {/* Services and Occasions */}
+          <ServicesOccasions />
+
+          {/* About Section */}
+          <AboutSection />
+
+          {/* Contact / Enquiry Section */}
+          <ContactEnquiry />
         </main>
         <Footer />
 
         {/* Floating Quick-Control to replay and test loader anytime */}
-        <div className="fixed bottom-4 right-4 z-40 flex items-center gap-2 bg-slate-950/85 p-1.5 rounded-full border border-sky-900/60 backdrop-blur-md shadow-xl text-xs font-mono">
+        <div className="fixed bottom-4 right-4 z-40">
           <button
             onClick={() => setLoading(true)}
-            className="px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 hover:bg-sky-500/30 hover:text-white transition-colors"
+            className="px-4 py-2 rounded-full bg-white/80 border border-sky-300/80 text-[#323192] font-bold text-xs shadow-lg shadow-sky-950/10 hover:bg-white hover:scale-105 backdrop-blur-md transition-all flex items-center gap-1.5"
             title="Replay the loading animation"
           >
             ↺ Replay Loader
           </button>
-          <button
-            onClick={() => {
-              setTextCase((prev) => (prev === "OPRISM" ? "oprism" : "OPRISM"));
-              setLoading(true);
-            }}
-            className="px-2.5 py-1 rounded-full text-slate-400 hover:text-white transition-colors"
-            title="Toggle between OPRISM and oprism"
-          >
-            Case: <span className="text-sky-400 font-bold">{textCase}</span>
-          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ArrowRight, Terminal, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X, Sparkles } from "lucide-react";
+import prismImg from "../assets/prism-crystal.png";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,110 +18,109 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#020617]/80 backdrop-blur-md border-b border-sky-950/40 py-3.5 shadow-lg shadow-black/20"
+          ? "bg-white/80 backdrop-blur-md border-b border-sky-200/50 py-3 shadow-sm"
           : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo & Brand */}
+        {/* Brand Logo & Wordmark */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-sky-500/10 border border-sky-400/20 group-hover:border-sky-400/40 transition-colors">
-            <svg viewBox="0 0 100 100" className="w-5 h-5 fill-none">
-              <polygon points="50,14 84,34 50,54 16,34" fill="#38bdf8" />
-              <polygon points="16,34 50,54 50,88 16,68" fill="#0284c7" opacity="0.8" />
-              <polygon points="84,34 50,54 50,88 84,68" fill="#60a5fa" opacity="0.7" />
-            </svg>
+          <img
+            src={prismImg}
+            alt="Oprism"
+            className="w-8 h-8 object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
+          />
+          <div className="flex items-center">
+            <span
+              style={{ fontFamily: "'Comfortaa', sans-serif" }}
+              className="font-bold text-xl tracking-tight text-[#323192]"
+            >
+              OPRISM
+            </span>
+            <span
+              style={{ fontFamily: "'Comfortaa', sans-serif" }}
+              className="text-[10px] font-bold text-[#323192] ml-0.5 self-start"
+            >
+              &trade;
+            </span>
           </div>
-          <span className="font-['Unbounded'] font-black text-lg tracking-tight text-white group-hover:text-sky-300 transition-colors">
-            OPRISM
-          </span>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-          <a href="#features" className="hover:text-sky-400 transition-colors">
-            Features
+        {/* Navigation Links */}
+        <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+          <a href="#collection" className="hover:text-[#323192] transition-colors">
+            Product Collection
           </a>
-          <a href="#routing" className="hover:text-sky-400 transition-colors">
-            Smart Routing
+          <a href="#services-occasions" className="hover:text-[#323192] transition-colors">
+            Services & Occasions
           </a>
-          <a href="#code" className="hover:text-sky-400 transition-colors">
-            API Quickstart
+          <a href="#about" className="hover:text-[#323192] transition-colors">
+            About Us
           </a>
-          <a href="#pricing" className="hover:text-sky-400 transition-colors">
-            Pricing
-          </a>
-          <a href="#docs" className="hover:text-sky-400 transition-colors">
-            Documentation
+          <a href="#enquiry" className="hover:text-[#323192] transition-colors">
+            Enquiry & Contact
           </a>
         </nav>
 
         {/* CTA Button */}
         <div className="hidden sm:flex items-center gap-3">
           <a
-            href="#code"
-            className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider px-3.5 py-1.5 rounded-lg border border-slate-700/60 text-slate-300 hover:border-slate-500 hover:text-white transition-colors"
+            href="#enquiry"
+            className="flex items-center gap-2 text-xs font-bold px-4 py-2.5 rounded-full bg-[#323192] text-white shadow-md shadow-[#323192]/20 hover:bg-[#252478] hover:shadow-lg transition-all"
           >
-            <Terminal className="w-3.5 h-3.5 text-sky-400" />
-            Console
-          </a>
-          <a
-            href="#get-started"
-            className="flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-md shadow-sky-500/20 hover:from-sky-400 hover:to-blue-500 transition-all"
-          >
-            Get API Key
-            <ArrowRight className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 text-sky-200" />
+            Request Consultation
           </a>
         </div>
 
-        {/* Mobile menu trigger */}
+        {/* Mobile menu button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-slate-400 hover:text-white"
+          className="md:hidden p-2 text-slate-700 hover:text-[#323192]"
           aria-label="Toggle Menu"
         >
-          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#020617]/95 border-b border-sky-950/40 px-6 py-4 flex flex-col gap-4 text-sm font-medium text-slate-300">
+        <div className="md:hidden bg-white/95 backdrop-blur-lg border-b border-sky-100 px-6 py-5 flex flex-col gap-4 text-sm font-semibold text-slate-700 shadow-xl">
           <a
-            href="#features"
+            href="#collection"
             onClick={() => setMobileMenuOpen(false)}
-            className="hover:text-sky-400 py-1"
+            className="hover:text-[#323192] py-1"
           >
-            Features
+            Product Collection
           </a>
           <a
-            href="#routing"
+            href="#services-occasions"
             onClick={() => setMobileMenuOpen(false)}
-            className="hover:text-sky-400 py-1"
+            className="hover:text-[#323192] py-1"
           >
-            Smart Routing
+            Services & Occasions
           </a>
           <a
-            href="#code"
+            href="#about"
             onClick={() => setMobileMenuOpen(false)}
-            className="hover:text-sky-400 py-1"
+            className="hover:text-[#323192] py-1"
           >
-            API Quickstart
+            About Us
           </a>
           <a
-            href="#pricing"
+            href="#enquiry"
             onClick={() => setMobileMenuOpen(false)}
-            className="hover:text-sky-400 py-1"
+            className="hover:text-[#323192] py-1"
           >
-            Pricing
+            Enquiry & Contact
           </a>
           <a
-            href="#get-started"
+            href="#enquiry"
             onClick={() => setMobileMenuOpen(false)}
-            className="inline-flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 text-white font-semibold"
+            className="inline-flex items-center justify-center gap-2 py-3 rounded-full bg-[#323192] text-white font-bold"
           >
-            Get API Key
-            <ArrowRight className="w-3.5 h-3.5" />
+            Request Consultation
+            <ArrowRight className="w-4 h-4" />
           </a>
         </div>
       )}

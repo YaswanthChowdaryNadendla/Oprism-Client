@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MotionLoadingFillText } from "./ui/motion-loading-fill-text";
 import prismImg from "../assets/prism-crystal.png";
+import gradient21st from "../assets/gradient-21st.png";
 
 export interface LoaderOverlayProps {
   onComplete: () => void;
@@ -11,19 +12,18 @@ export interface LoaderOverlayProps {
 /**
  * LoaderOverlay
  *
- * Reproduces the exact composition, colors, and visual appearance of the reference image:
- * - Background: Royal-to-sky blue gradient from the reference image (#224996 -> #5eaee0 -> #f8fcfe)
- * - Prism: Faceted crystalline triangle centered directly above the text
- * - Typography: Exact rounded brand wordmark (OPRISM) in #323192
- * - Animation: 21st.dev motion-loading-fill-text left-to-right fill animation
- * - Lifecycle: Smooth fade-out reveal of the homepage once complete
+ * Full-screen loading screen powered by gradient-21st.png:
+ * - Background: Exact gradient-21st.png asset with background-size: cover & center positioning.
+ * - Prism: Faceted crystalline triangle centered directly above the text.
+ * - Typography: Exact brand wordmark (OPRISM) in #323192.
+ * - Animation: Faithful 21st.dev motion-loading-fill-text animation.
+ * - Transition: Smooth fade-out reveal seamlessly transitioning into the homepage.
  */
 export function LoaderOverlay({ onComplete, text = "OPRISM" }: LoaderOverlayProps) {
   const [isExiting, setIsExiting] = useState(false);
 
   const handleFillComplete = () => {
     setIsExiting(true);
-    // Smooth transition into homepage
     setTimeout(() => {
       onComplete();
     }, 700);
@@ -33,25 +33,27 @@ export function LoaderOverlay({ onComplete, text = "OPRISM" }: LoaderOverlayProp
     <AnimatePresence>
       {!isExiting && (
         <motion.aside
-          key="oprism-reference-loader"
+          key="oprism-loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center px-6 select-none overflow-hidden"
           style={{
-            // Exact background gradient sampled from reference image
-            background: "linear-gradient(180deg, #224996 0%, #2858a4 25%, #2b7cb9 55%, #5eaee0 75%, #a8d5f0 88%, #f8fcfe 100%)",
+            backgroundImage: `url(${gradient21st})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
           }}
           aria-live="polite"
           aria-label="Loading Oprism website"
         >
-          {/* Main Logo Container matching reference composition */}
+          {/* Main Logo Composition matching reference */}
           <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-xl mx-auto">
             {/* 1. Faceted Crystal Prism Triangle directly from reference */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: -8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="relative flex items-center justify-center mb-3 sm:mb-5 drop-shadow-md"
+              className="relative flex items-center justify-center mb-4 sm:mb-6 drop-shadow-md"
             >
               <img
                 src={prismImg}

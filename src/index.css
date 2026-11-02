@@ -2,23 +2,35 @@
 
 @layer base {
   :root {
-    --background: #020617;
-    --foreground: #f8fafc;
+    --brand-primary: #323192;
+    --brand-secondary: #1d4ed8;
+    --brand-accent: #0284c7;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--background);
-    color: var(--foreground);
+    color: var(--text-primary);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
   body {
     margin: 0;
     padding: 0;
-    background-color: #020617;
+    color: var(--text-primary);
     overflow-x: hidden;
   }
+}
+
+/* ─── Global Background Image using gradient-21st.png ─── */
+.bg-gradient-21st {
+  background-image: url('./assets/gradient-21st.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* ─── 21st.dev motion-loading-fill-text layout ─── */
