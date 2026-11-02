@@ -10,22 +10,19 @@ export function Home() {
   const eventCards = [
     {
       title: "Celebrations",
-      description: "A glimpse of special occasions.",
-      expandedText:
+      description:
         "Thoughtfully customized bottled water for weddings, birthdays and memorable celebrations.",
       image: celebrationsImg,
     },
     {
       title: "Business & Hospitality",
-      description: "Professional hydration solutions.",
-      expandedText:
+      description:
         "Premium bottled-water arrangements for corporate gatherings, hotels and hospitality spaces.",
       image: businessImg,
     },
     {
       title: "Special Occasions",
-      description: "Customized bottled-water experiences.",
-      expandedText:
+      description:
         "Personalized bottles and beverage solutions that make your important moments stand out.",
       image: specialOccasionsImg,
     },
@@ -37,10 +34,10 @@ export function Home() {
       <Hero />
 
       {/* 2. Events We Serve Section */}
-      <section className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-24 relative z-10">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6">
+      <section className="pt-10 sm:pt-14 lg:pt-16 pb-12 sm:pb-16 relative z-10">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6">
           {/* Section Heading */}
-          <div className="mb-10 sm:mb-12">
+          <div className="mb-6 sm:mb-8">
             <h2
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] text-left"
@@ -49,36 +46,33 @@ export function Home() {
             </h2>
           </div>
 
-          {/* 3 Responsive Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          {/* 3 Compact Responsive Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 items-stretch">
             {eventCards.map((card, idx) => (
               <div
                 key={idx}
-                className="group flex flex-col h-full bg-white/75 backdrop-blur-md rounded-3xl border border-white/80 shadow-lg shadow-sky-950/5 hover:shadow-2xl hover:shadow-[#323192]/10 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
+                className="group flex flex-col h-full bg-white/80 backdrop-blur-md rounded-2xl border border-white/80 shadow-md shadow-sky-950/5 hover:shadow-xl hover:shadow-[#323192]/10 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
-                {/* Prominent Image with subtle zoom on hover */}
-                <div className="relative aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] w-full overflow-hidden bg-sky-50">
+                {/* Compact Image Container with subtle zoom on hover */}
+                <div className="relative h-44 sm:h-48 md:h-44 lg:h-48 w-full overflow-hidden bg-sky-50">
                   <img
                     src={card.image}
                     alt={card.title}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out select-none"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/15 via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                {/* Content Area */}
-                <div className="p-6 sm:p-7 flex flex-col flex-grow">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block mb-2">
-                    {card.description}
-                  </span>
+                {/* Compact Content Area */}
+                <div className="p-4 sm:p-5 flex flex-col flex-grow">
                   <h3
                     style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                    className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-[#323192] transition-colors"
+                    className="text-lg sm:text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-[#323192] transition-colors"
                   >
                     {card.title}
                   </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed mt-auto">
-                    {card.expandedText}
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    {card.description}
                   </p>
                 </div>
               </div>
@@ -86,10 +80,10 @@ export function Home() {
           </div>
 
           {/* Centered CTA Button */}
-          <div className="mt-12 sm:mt-16 flex justify-center">
+          <div className="mt-8 sm:mt-10 flex justify-center">
             <Link
               to="/services"
-              className="group inline-flex items-center gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] transition-all"
+              className="group inline-flex items-center gap-2.5 px-7 sm:px-9 py-3 sm:py-3.5 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] transition-all"
             >
               <span>Explore Our Services</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
