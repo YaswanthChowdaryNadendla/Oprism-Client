@@ -10,11 +10,11 @@ export interface NavigationOverlayProps {
 }
 
 const NAV_ITEMS = [
-  { id: "01", label: "Home", href: "#" },
-  { id: "02", label: "Product Collection", href: "#collection" },
-  { id: "03", label: "Services & Occasions", href: "#services-occasions" },
-  { id: "04", label: "About Us", href: "#about" },
-  { id: "05", label: "Enquiry & Contact", href: "#enquiry" },
+  { id: "home", label: "Home", href: "#" },
+  { id: "collection", label: "Product Collection", href: "#collection" },
+  { id: "services", label: "Services & Occasions", href: "#services-occasions" },
+  { id: "about", label: "About Us", href: "#about" },
+  { id: "enquiry", label: "Enquiry & Contact", href: "#enquiry" },
 ];
 
 /**
@@ -22,6 +22,7 @@ const NAV_ITEMS = [
  *
  * Immersive full-screen navigation overlay for Oprism:
  * - Powered by gradient-21st.png with backdrop-blur
+ * - Clean, minimal display featuring solely the five large animated text links
  * - Uses exact 21st.dev Text Roll component for each navigation item
  * - Staggered entrance animation when opening
  * - Smooth-scrolls to page sections and closes on selection
@@ -115,11 +116,8 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
                   <a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="inline-flex items-baseline gap-3 sm:gap-6 text-slate-800 hover:text-[#323192] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#323192] rounded-lg"
+                    className="inline-block text-slate-800 hover:text-[#323192] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#323192] rounded-lg"
                   >
-                    <span className="font-mono text-xs sm:text-sm font-semibold text-sky-600/80 group-hover:text-[#323192] transition-colors shrink-0">
-                      {item.id}
-                    </span>
                     <TextRoll
                       className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#0f172a] group-hover:text-[#323192] transition-colors"
                     >
