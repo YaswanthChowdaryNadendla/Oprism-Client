@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import prismImg from "../assets/prism-crystal.png";
 import { OprismWordmark } from "./ui/oprism-wordmark";
@@ -6,11 +6,47 @@ import { MenuToggleIcon } from "./ui/menu-toggle";
 import { NavigationOverlay } from "./NavigationOverlay";
 
 export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 60);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Check initial scroll on load / route mount
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-transparent py-4 sm:py-5">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 py-4 sm:py-5 transition-all duration-300 ease-in-out ${
+          isMenuOpen
+            ? "bg-transparent border-b border-transparent shadow-none"
+            : scrolled
+            ? "border-b shadow-[0_4px_20px_-2px_rgba(15,92,99,0.05)]"
+            : "bg-transparent border-b border-transparent shadow-none"
+        }`}
+        style={{
+          backgroundColor:
+            !isMenuOpen && scrolled ? "rgba(234, 247, 242, 0.88)" : "transparent",
+          borderColor:
+            !isMenuOpen && scrolled ? "rgba(15, 92, 99, 0.10)" : "transparent",
+          backdropFilter: !isMenuOpen && scrolled ? "blur(16px)" : "none",
+          WebkitBackdropFilter: !isMenuOpen && scrolled ? "blur(16px)" : "none",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Left Side: [Original Oprism Logo™] × The Signature of Purity */}
           <div className="flex items-center min-w-0">
