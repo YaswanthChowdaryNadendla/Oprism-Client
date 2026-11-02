@@ -24,6 +24,7 @@ const NAV_ITEMS = [
  * - Powered by gradient-21st.png with frosted glass backdrop-blur
  * - Features the four primary routes: Home (/), About (/about), Services (/services), Contact (/contact)
  * - Uses exact 21st.dev Text Roll component for each navigation item
+ * - Uniform deep navy color (#0B1F3B) for all items in active, inactive, and hovered states
  * - Staggered entrance animation when opening
  * - Automatically closes upon route selection
  * - Accessible: Escape key handler, background scroll lock, ARIA modal attributes
@@ -103,16 +104,10 @@ export function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
                   <NavLink
                     to={item.to}
                     onClick={onClose}
-                    className={({ isActive }) =>
-                      `inline-block transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#323192] rounded-lg ${
-                        isActive
-                          ? "text-[#323192]"
-                          : "text-slate-800 hover:text-[#323192]"
-                      }`
-                    }
+                    className="inline-block text-[#0B1F3B] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0B1F3B] rounded-lg"
                   >
                     <TextRoll
-                      className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight group-hover:text-[#323192] transition-colors"
+                      className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#0B1F3B]"
                     >
                       {item.label}
                     </TextRoll>
