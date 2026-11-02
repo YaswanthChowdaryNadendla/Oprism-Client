@@ -12,7 +12,7 @@ export function Home() {
       <Hero />
 
       {/* 2. Brand Introduction */}
-      <section className="py-20 relative z-10 border-t border-sky-200/50">
+      <section className="pt-10 pb-16 sm:py-16 lg:py-20 relative z-10 border-t border-sky-200/50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left Brand Showcase Card */}

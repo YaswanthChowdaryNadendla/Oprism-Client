@@ -84,7 +84,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[100svh] lg:h-[100svh] flex flex-col justify-center items-center overflow-hidden">
+    <section className="relative w-full min-h-[85svh] sm:min-h-[90svh] lg:h-[100svh] flex flex-col justify-start sm:justify-center items-center overflow-hidden">
       {/* ─── Edge-to-Edge Background Video Layer (Begins behind transparent navbar) ─── */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none -z-10">
         <video
@@ -103,11 +103,11 @@ export function Hero() {
         {/* Soft radial highlight centered behind typography for optimal readability */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/85 via-white/45 to-transparent pointer-events-none" />
         {/* Seamless bottom fade blending into the page background */}
-        <div className="absolute inset-x-0 bottom-0 h-16 sm:h-24 bg-gradient-to-t from-sky-100/70 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-14 sm:h-24 bg-gradient-to-t from-sky-100/70 to-transparent pointer-events-none" />
       </div>
 
       {/* ─── Centered Hero Content Overlay (Above the Video) ─── */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center flex flex-col items-center justify-center py-16 sm:py-20 lg:py-0 my-auto">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center flex flex-col items-center justify-center pt-20 pb-8 sm:py-16 lg:py-0 my-auto">
         {/* 1. Main Headline */}
         <h1
           style={{ fontFamily: "'Comfortaa', sans-serif" }}
