@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Hero } from "../components/Hero";
-import arrowImg from "../assets/arrow.png";
 
 export function Home() {
   return (
@@ -10,26 +9,15 @@ export function Home() {
       {/* 1. Hero Section with floating Oprism crystal bottle visual & call to actions */}
       <Hero />
 
-      {/* 2. Events We Serve Section Heading with Connected Arrow */}
-      <section className="pt-10 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 relative z-10">
+      {/* 2. Events We Serve Section Heading */}
+      <section className="pt-10 sm:pt-16 lg:pt-20 pb-8 sm:pb-12 relative z-10">
         <div className="max-w-7xl mx-auto px-5 sm:px-6">
-          <div className="inline-block relative">
-            <h2
-              style={{ fontFamily: "'Comfortaa', sans-serif" }}
-              className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] text-left whitespace-nowrap inline-flex items-baseline"
-            >
-              <span>Events We</span>&nbsp;
-              <span className="text-[#323192] relative inline-block">
-                Serve
-                <img
-                  src={arrowImg}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute left-[calc(100%+0.25rem)] sm:left-[calc(100%+0.35rem)] top-[36%] sm:top-[38%] w-20 sm:w-32 md:w-44 lg:w-48 max-w-none pointer-events-none select-none"
-                />
-              </span>
-            </h2>
-          </div>
+          <h2
+            style={{ fontFamily: "'Comfortaa', sans-serif" }}
+            className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] text-left"
+          >
+            Events We <span className="text-[#323192]">Serve</span>
+          </h2>
         </div>
       </section>
 
