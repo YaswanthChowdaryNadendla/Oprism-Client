@@ -2,22 +2,99 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Hero } from "../components/Hero";
+import celebrationsImg from "../assets/celebrations.png";
+import businessImg from "../assets/Business&Hospitality.png";
+import specialOccasionsImg from "../assets/special-occasions.jpg";
 
 export function Home() {
+  const eventCards = [
+    {
+      title: "Celebrations",
+      description: "A glimpse of special occasions.",
+      expandedText:
+        "Thoughtfully customized bottled water for weddings, birthdays and memorable celebrations.",
+      image: celebrationsImg,
+    },
+    {
+      title: "Business & Hospitality",
+      description: "Professional hydration solutions.",
+      expandedText:
+        "Premium bottled-water arrangements for corporate gatherings, hotels and hospitality spaces.",
+      image: businessImg,
+    },
+    {
+      title: "Special Occasions",
+      description: "Customized bottled-water experiences.",
+      expandedText:
+        "Personalized bottles and beverage solutions that make your important moments stand out.",
+      image: specialOccasionsImg,
+    },
+  ];
+
   return (
     <div className="relative">
       {/* 1. Hero Section with floating Oprism crystal bottle visual & call to actions */}
       <Hero />
 
-      {/* 2. Events We Serve Section Heading */}
-      <section className="pt-10 sm:pt-16 lg:pt-20 pb-8 sm:pb-12 relative z-10">
+      {/* 2. Events We Serve Section */}
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-24 relative z-10">
         <div className="max-w-7xl mx-auto px-5 sm:px-6">
-          <h2
-            style={{ fontFamily: "'Comfortaa', sans-serif" }}
-            className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] text-left"
-          >
-            Events We <span className="text-[#323192]">Serve</span>
-          </h2>
+          {/* Section Heading */}
+          <div className="mb-10 sm:mb-12">
+            <h2
+              style={{ fontFamily: "'Comfortaa', sans-serif" }}
+              className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] text-left"
+            >
+              Events We <span className="text-[#323192]">Serve</span>
+            </h2>
+          </div>
+
+          {/* 3 Responsive Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+            {eventCards.map((card, idx) => (
+              <div
+                key={idx}
+                className="group flex flex-col h-full bg-white/75 backdrop-blur-md rounded-3xl border border-white/80 shadow-lg shadow-sky-950/5 hover:shadow-2xl hover:shadow-[#323192]/10 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
+              >
+                {/* Prominent Image with subtle zoom on hover */}
+                <div className="relative aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] w-full overflow-hidden bg-sky-50">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out select-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent pointer-events-none" />
+                </div>
+
+                {/* Content Area */}
+                <div className="p-6 sm:p-7 flex flex-col flex-grow">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block mb-2">
+                    {card.description}
+                  </span>
+                  <h3
+                    style={{ fontFamily: "'Comfortaa', sans-serif" }}
+                    className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-[#323192] transition-colors"
+                  >
+                    {card.title}
+                  </h3>
+                  <p className="text-slate-600 text-sm leading-relaxed mt-auto">
+                    {card.expandedText}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Centered CTA Button */}
+          <div className="mt-12 sm:mt-16 flex justify-center">
+            <Link
+              to="/services"
+              className="group inline-flex items-center gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] transition-all"
+            >
+              <span>Explore Our Services</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+            </Link>
+          </div>
         </div>
       </section>
 
