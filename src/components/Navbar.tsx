@@ -31,14 +31,14 @@ export function Navbar() {
             className="flex items-center group min-w-0"
             aria-label="Oprism Home - A New Standard of Purity"
           >
-            {/* 1. Original Oprism crystal + wordmark + ™ */}
-            <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            {/* 1. Original Oprism crystal + wordmark + ™ with unified 6-8px optical spacing */}
+            <div className="flex items-center shrink-0">
               <img
                 src={prismImg}
                 alt="Oprism Crystal"
                 className="w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-sm group-hover:scale-105 transition-transform shrink-0"
               />
-              <div className="relative flex items-center shrink-0">
+              <div className="relative flex items-center shrink-0 -ml-0.5 sm:-ml-1">
                 <div className="w-[82px] sm:w-[96px] md:w-[108px] h-auto flex items-center">
                   <OprismWordmark variant="fill" />
                 </div>
