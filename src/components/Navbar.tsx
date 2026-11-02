@@ -24,12 +24,12 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Left Side: [Original Oprism Logo™] × A New Standard of Purity */}
+        {/* Left Side: [Original Oprism Logo™] × The Signature of Purity */}
         <div className="flex items-center min-w-0">
           <a
             href="#"
             className="flex items-center group min-w-0"
-            aria-label="Oprism Home - A New Standard of Purity"
+            aria-label="Oprism Home - The Signature of Purity"
           >
             {/* 1. Original Oprism crystal + wordmark + ™ with unified 6-8px optical spacing */}
             <div className="flex items-center shrink-0">
@@ -59,9 +59,9 @@ export function Navbar() {
               ×
             </span>
 
-            {/* 3. Text: A New Standard of Purity */}
+            {/* 3. Text: The Signature of Purity */}
             <span className="hidden min-[360px]:inline-block text-[10px] sm:text-xs md:text-sm font-medium tracking-normal text-slate-600 group-hover:text-slate-800 transition-colors truncate whitespace-nowrap">
-              A New Standard of Purity
+              The Signature of Purity
             </span>
           </a>
         </div>
