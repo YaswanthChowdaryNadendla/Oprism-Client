@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { ArrowRight, Sparkles, Gem, Compass, ShieldCheck } from "lucide-react";
-import { motion } from "framer-motion";
 import heroVideo from "../assets/Herosectionvideo.mp4";
 
 const LOOP_START_TIME = 10.0;
@@ -84,103 +83,75 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
-          {/* Left Column: Headline, Description & Desktop Actions */}
-          <div className="col-span-1 lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full border border-sky-300/60 bg-white/60 backdrop-blur-md shadow-sm mb-4 sm:mb-6">
-              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#323192]" />
-              <span className="text-[10px] sm:text-xs font-bold text-[#323192] tracking-wider uppercase">
-                Master Curators of Architectural Minerals
-              </span>
-            </div>
+    <section className="relative min-h-[90vh] sm:min-h-screen flex flex-col justify-between pt-28 pb-12 sm:pt-36 sm:pb-16 overflow-hidden">
+      {/* ─── Edge-to-Edge Background Video Layer ─── */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+        <video
+          ref={videoRef}
+          src={heroVideo}
+          muted
+          playsInline
+          autoPlay
+          preload="auto"
+          className={`w-full h-full object-cover object-center sm:object-[center_35%] transition-opacity duration-700 ${
+            isVideoReady ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        {/* Subtle translucent aqua overlay for crystal clarity and premium readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-sky-50/75 via-white/45 to-sky-100/75 backdrop-blur-[1.5px]" />
+        {/* Soft radial highlight behind center typography */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/60 via-transparent to-transparent pointer-events-none" />
+        {/* Seamless bottom fade blending into the page background */}
+        <div className="absolute inset-x-0 bottom-0 h-28 sm:h-36 bg-gradient-to-t from-sky-100/80 to-transparent pointer-events-none" />
+      </div>
 
-            {/* Headline */}
-            <h1
-              style={{ fontFamily: "'Comfortaa', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-[#0f172a] leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-6"
-            >
-              Pure Natural Elegance.{" "}
-              <span className="text-[#323192] block sm:inline">
-                Refracted in Stone.
-              </span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-sm sm:text-base md:text-lg text-slate-700 max-w-2xl font-normal leading-relaxed mb-6 sm:mb-8">
-              Transforming rare geological formations and crystal minerals into extraordinary architectural surfaces, bespoke private residences, and landmark spaces.
-            </p>
-
-            {/* Desktop Action Buttons (lg and up) */}
-            <div className="hidden lg:flex items-center gap-4">
-              <a
-                href="#collection"
-                className="px-8 py-4 rounded-full bg-[#323192] text-white font-bold text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
-              >
-                Explore Product Collection
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href="#enquiry"
-                className="px-8 py-4 rounded-full border border-sky-300/80 bg-white/70 backdrop-blur-md text-[#323192] font-bold text-sm hover:bg-white hover:border-[#323192]/40 transition-all flex items-center justify-center gap-2"
-              >
-                Request Private Consultation
-              </a>
-            </div>
-          </div>
-
-          {/* Right Column: Cinematic Video Visual with Seamless Aqua Glow */}
-          <div className="col-span-1 lg:col-span-5 flex justify-center items-center w-full my-2 lg:my-0">
-            <motion.div
-              animate={{ y: [-6, 6, -6] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="relative w-full max-w-[340px] sm:max-w-md lg:max-w-none flex justify-center items-center"
-            >
-              {/* Soft ambient radial glow behind the video */}
-              <div
-                className="absolute inset-4 sm:inset-8 bg-sky-400/25 rounded-full blur-3xl pointer-events-none -z-10 scale-95"
-                aria-hidden="true"
-              />
-              <video
-                ref={videoRef}
-                src={heroVideo}
-                muted
-                playsInline
-                autoPlay
-                preload="auto"
-                className={`w-full h-auto max-h-[300px] sm:max-h-[400px] md:max-h-[480px] lg:max-h-[560px] xl:max-h-[620px] object-contain drop-shadow-[0_20px_35px_rgba(34,73,150,0.18)] select-none rounded-2xl transition-opacity duration-500 ${
-                  isVideoReady ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            </motion.div>
-          </div>
-
-          {/* Mobile / Tablet Action Buttons (visible below video on mobile) */}
-          <div className="col-span-1 lg:hidden flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md mx-auto mt-2">
-            <a
-              href="#collection"
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl transition-all flex items-center justify-center gap-2"
-            >
-              Explore Product Collection
-              <ArrowRight className="w-4 h-4" />
-            </a>
-            <a
-              href="#enquiry"
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full border border-sky-300/80 bg-white/70 backdrop-blur-md text-[#323192] font-bold text-xs sm:text-sm hover:bg-white transition-all flex items-center justify-center gap-2"
-            >
-              Request Private Consultation
-            </a>
-          </div>
+      {/* ─── Hero Content Overlay (Above the Video) ─── */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center my-auto py-6 sm:py-10">
+        {/* Pill Badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full border border-sky-300/70 bg-white/85 backdrop-blur-md shadow-sm mb-4 sm:mb-6">
+          <Sparkles className="w-3.5 h-3.5 text-[#323192]" />
+          <span className="text-[10px] sm:text-xs font-bold text-[#323192] tracking-wider uppercase">
+            Master Curators of Architectural Minerals
+          </span>
         </div>
 
-        {/* Highlights Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-4 max-w-7xl mx-auto mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-sky-200/50">
+        {/* Headline */}
+        <h1
+          style={{ fontFamily: "'Comfortaa', sans-serif" }}
+          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#0f172a] leading-[1.18] sm:leading-[1.12] mb-4 sm:mb-6 max-w-4xl"
+        >
+          Pure Natural Elegance.{" "}
+          <span className="text-[#323192] block sm:inline">
+            Refracted in Stone.
+          </span>
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-700 max-w-2xl font-normal leading-relaxed mb-6 sm:mb-8">
+          Transforming rare geological formations and crystal minerals into extraordinary architectural surfaces, bespoke private residences, and landmark spaces.
+        </p>
+
+        {/* CTA Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+          <a
+            href="#collection"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+          >
+            Explore Product Collection
+            <ArrowRight className="w-4 h-4" />
+          </a>
+          <a
+            href="#enquiry"
+            className="w-full sm:w-auto px-8 py-4 rounded-full border border-sky-300/80 bg-white/85 backdrop-blur-md text-[#323192] font-bold text-xs sm:text-sm hover:bg-white hover:border-[#323192]/40 shadow-sm transition-all flex items-center justify-center gap-2"
+          >
+            Request Private Consultation
+          </a>
+        </div>
+      </div>
+
+      {/* ─── Highlights Row (Docked at Bottom of Hero) ─── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-auto pt-6 sm:pt-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-4 border-t border-sky-200/60 pt-6 sm:pt-8">
           {[
             { label: "100% Genuine Minerals", desc: "Ethically quarried globally", icon: <Gem className="w-4 h-4 text-[#323192]" /> },
             { label: "Bespoke Fabrication", desc: "Sub-millimeter precision", icon: <Compass className="w-4 h-4 text-[#323192]" /> },
@@ -189,12 +160,12 @@ export function Hero() {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="p-3.5 sm:p-4 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm text-left flex items-start gap-3"
+              className="p-3.5 sm:p-4 rounded-2xl bg-white/70 backdrop-blur-md border border-white/90 shadow-sm text-left flex items-start gap-3"
             >
-              <div className="p-2 rounded-xl bg-sky-100/60 mt-0.5">{item.icon}</div>
+              <div className="p-2 rounded-xl bg-sky-100/70 mt-0.5">{item.icon}</div>
               <div>
                 <div className="text-xs sm:text-sm font-bold text-slate-900">{item.label}</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">{item.desc}</div>
+                <div className="text-[11px] text-slate-600 mt-0.5">{item.desc}</div>
               </div>
             </div>
           ))}
