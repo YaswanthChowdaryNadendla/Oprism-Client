@@ -5,8 +5,6 @@ import { OprismWordmark } from "./oprism-wordmark";
 export interface MotionLoadingFillTextProps {
   /** Text to display (defaults to "OPRISM") */
   text?: string;
-  /** Whether to use the custom rounded SVG brand wordmark mask */
-  useSvgWordmark?: boolean;
   /** Callback fired once fill animation reaches 100% */
   onComplete?: () => void;
   /** Optional container class */
@@ -15,19 +13,17 @@ export interface MotionLoadingFillTextProps {
 
 /**
  * useFillProgress
- * Preserves the original 21st.dev motion-loading-fill-text progress hook
+ * Faithfully preserves the original 21st.dev motion-loading-fill-text progress hook
  * using spring physics to drive the fill smoothly from 0 to 1.
  */
 function useFillProgress(onComplete?: () => void) {
-  // Spring-driven progress value with refined damping for cinematic smoothness
+  // Spring-driven progress value following original 21st.dev component
   const progress = useSpring(0, { stiffness: 90, damping: 20 });
   const hasTriggeredComplete = useRef(false);
 
   useEffect(() => {
-    // Stepped progression mimicking real resource loading
     const interval = setInterval(() => {
       const current = progress.get();
-      // Smooth incremental random steps
       const delta = Math.random() * 0.16 + 0.08;
       const next = Math.min(1, current + delta);
       progress.set(next);
@@ -52,17 +48,15 @@ function useFillProgress(onComplete?: () => void) {
 
 /**
  * MotionLoadingFillText
- * Adapted faithfully from 21st.dev (motiondotdev/motion-loading-fill-text)
+ * Exact 21st.dev motion-loading-fill-text component (authored by motiondotdev)
  *
  * Core animation structure preserved:
- * - Two stacked layers (background track + foreground fill)
+ * - Two stacked layers: background track + foreground fill
  * - Motion-driven `clipPath` inset: `inset(0 100% 0 0)` -> `inset(0 0% 0 0)`
- * - Replaces default text with uppercase OPRISM
- * - Styled with deep navy background and crystal-blue fill
+ * - Replaces default text with OPRISM matching reference logo typography
  */
 export function MotionLoadingFillText({
   text = "OPRISM",
-  useSvgWordmark = true,
   onComplete,
   className = "",
 }: MotionLoadingFillTextProps) {
@@ -78,30 +72,18 @@ export function MotionLoadingFillText({
   return (
     <div className={`fill-text-container ${className}`}>
       <div className="fill-text-stack relative flex items-center justify-center">
-        {/* ─── Layer 1: Background Layer (Translucent deep-navy track) ─── */}
+        {/* Layer 1: Background Layer (Faded placeholder track) */}
         <div className="fill-text fill-text-bg" aria-hidden={true}>
-          {useSvgWordmark ? (
-            <OprismWordmark variant="track" />
-          ) : (
-            <span className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight">
-              {text}
-            </span>
-          )}
+          <OprismWordmark variant="track" text={text} />
         </div>
 
-        {/* ─── Layer 2: Foreground Layer (Crystal-blue fill revealed via clipPath) ─── */}
+        {/* Layer 2: Foreground Layer (Filled with Motion clipPath) */}
         <motion.div
           className="fill-text fill-text-fill"
           style={{ clipPath }}
           aria-label={text}
         >
-          {useSvgWordmark ? (
-            <OprismWordmark variant="fill" />
-          ) : (
-            <span className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight">
-              {text}
-            </span>
-          )}
+          <OprismWordmark variant="fill" text={text} />
         </motion.div>
       </div>
     </div>

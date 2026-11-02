@@ -1,68 +1,64 @@
 import React from 'react';
 
+export interface OprismWordmarkProps {
+  variant?: 'track' | 'fill';
+  text?: string;
+  className?: string;
+  showTrademark?: boolean;
+}
+
+/**
+ * OprismWordmark
+ *
+ * Matches the typography, proportions, and character of the reference Oprism logo:
+ * - Font: Comfortaa (geometric rounded grotesque with circular O, rounded terminals)
+ * - Color: #323192 (exact royal indigo from the reference logo)
+ * - Trademark badge (TM) matching the reference logo
+ * - Layered for 21st.dev motion-loading-fill-text (track vs fill)
+ */
 export function OprismWordmark({
   variant = 'fill',
+  text = 'OPRISM',
   className = '',
-}: {
-  variant?: 'track' | 'fill';
-  className?: string;
-}) {
+  showTrademark = true,
+}: OprismWordmarkProps) {
   const isFill = variant === 'fill';
 
   return (
-    <svg
-      viewBox="0 0 780 130"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={`w-full max-w-[320px] sm:max-w-[520px] md:max-w-[680px] lg:max-w-[760px] h-auto select-none ${className}`}
-      aria-label="OPRISM"
+    <div
+      className={`inline-flex items-center select-none ${className}`}
+      aria-label={text}
     >
-      <defs>
-        {/* Crystal-Blue Premium Gradient for the Fill Layer */}
-        <linearGradient id="oprismCrystalFill" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#38bdf8" />     {/* Bright Sky / Cyan */}
-          <stop offset="35%" stopColor="#60a5fa" />    {/* Crystal Blue */}
-          <stop offset="70%" stopColor="#93c5fd" />    {/* Ice Blue Accent */}
-          <stop offset="100%" stopColor="#c084fc" />   {/* Soft Violet Prismatic Refraction */}
-        </linearGradient>
-
-        {/* Ambient Subtle Glow Filter for Foreground Fill */}
-        <filter id="crystalGlow" x="-10%" y="-10%" width="120%" height="120%">
-          <feGaussianBlur stdDeviation="2.5" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-      </defs>
-
-      {/* Wordmark typography */}
-      <text
-        x="50%"
-        y="58%"
-        textAnchor="middle"
-        dominantBaseline="central"
-        fill={isFill ? "url(#oprismCrystalFill)" : "rgba(56, 189, 248, 0.16)"}
+      <span
         style={{
-          fontFamily: "'Unbounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-          fontWeight: 900,
-          fontSize: '92px',
-          letterSpacing: '-0.035em',
+          fontFamily: "'Comfortaa', ui-sans-serif, system-ui, sans-serif",
+          fontWeight: 700,
+          letterSpacing: '-0.02em',
+          color: isFill ? '#323192' : 'rgba(50, 49, 146, 0.22)',
+          filter: isFill ? 'drop-shadow(0 2px 8px rgba(50, 49, 146, 0.25))' : undefined,
+          display: 'inline-block',
+          lineHeight: 1,
         }}
-        filter={isFill ? "url(#crystalGlow)" : undefined}
+        className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight transition-colors duration-200"
       >
-        OPRISM
-      </text>
+        {text}
+      </span>
 
-      {/* Subtle bottom brand accent line in crystal-blue */}
-      {isFill && (
-        <rect
-          x="35%"
-          y="114"
-          width="30%"
-          height="3"
-          rx="1.5"
-          fill="url(#oprismCrystalFill)"
-          opacity="0.85"
-        />
+      {showTrademark && (
+        <span
+          style={{
+            fontFamily: "'Comfortaa', sans-serif",
+            fontWeight: 700,
+            color: isFill ? '#323192' : 'rgba(50, 49, 146, 0.22)',
+            verticalAlign: 'super',
+          }}
+          className="text-[10px] sm:text-xs md:text-sm font-semibold ml-1 self-start -mt-1 sm:-mt-2"
+        >
+          &trade;
+        </span>
       )}
-    </svg>
+    </div>
   );
 }
+
+export default OprismWordmark;

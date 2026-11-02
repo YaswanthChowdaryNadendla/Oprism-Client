@@ -7,8 +7,8 @@ import { InteractiveRouter } from "./components/InteractiveRouter";
 import { Footer } from "./components/Footer";
 
 export function App() {
-  // Loading state: true on initial page load / refresh
   const [loading, setLoading] = useState(true);
+  const [textCase, setTextCase] = useState<"OPRISM" | "oprism">("OPRISM");
 
   const handleLoadingComplete = useCallback(() => {
     setLoading(false);
@@ -16,10 +16,15 @@ export function App() {
 
   return (
     <>
-      {/* ─── 1. Oprism Fullscreen Loading Screen (21st.dev motion-loading-fill-text) ─── */}
-      {loading && <LoaderOverlay onComplete={handleLoadingComplete} />}
+      {/* ─── 1. Oprism Reference Loading Animation (21st.dev motion-loading-fill-text) ─── */}
+      {loading && (
+        <LoaderOverlay
+          text={textCase}
+          onComplete={handleLoadingComplete}
+        />
+      )}
 
-      {/* ─── 2. Homepage Content with smooth fade-in reveal ─── */}
+      {/* ─── 2. Homepage Content with smooth reveal ─── */}
       <div
         className={`site-content min-h-screen bg-[#020617] text-slate-100 ${
           !loading ? "visible" : ""
@@ -34,14 +39,24 @@ export function App() {
         </main>
         <Footer />
 
-        {/* Floating Developer Control to preview/replay loader */}
-        <div className="fixed bottom-4 right-4 z-40">
+        {/* Floating Quick-Control to replay and test loader anytime */}
+        <div className="fixed bottom-4 right-4 z-40 flex items-center gap-2 bg-slate-950/85 p-1.5 rounded-full border border-sky-900/60 backdrop-blur-md shadow-xl text-xs font-mono">
           <button
             onClick={() => setLoading(true)}
-            className="text-[11px] font-mono px-3 py-1.5 rounded-full border border-sky-900/60 bg-slate-950/80 text-sky-400 hover:text-white hover:border-sky-500/50 backdrop-blur-md shadow-lg transition-all"
-            title="Replay the Oprism loading animation"
+            className="px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 hover:bg-sky-500/30 hover:text-white transition-colors"
+            title="Replay the loading animation"
           >
             ↺ Replay Loader
+          </button>
+          <button
+            onClick={() => {
+              setTextCase((prev) => (prev === "OPRISM" ? "oprism" : "OPRISM"));
+              setLoading(true);
+            }}
+            className="px-2.5 py-1 rounded-full text-slate-400 hover:text-white transition-colors"
+            title="Toggle between OPRISM and oprism"
+          >
+            Case: <span className="text-sky-400 font-bold">{textCase}</span>
           </button>
         </div>
       </div>
