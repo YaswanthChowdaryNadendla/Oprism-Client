@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles, ShieldCheck, CheckCircle2, Truck } from "lucide-r
 import { useReducedMotion } from "framer-motion";
 import { Hero } from "../components/Hero";
 import { SlidingNumber } from "../components/ui/sliding-number";
+import { MarkerHighlight } from "../components/ui/marker-highlight";
 import { TestimonialsSection, type TestimonialItem } from "../components/ui/testimonials-with-marquee";
 import celebrationsImg from "../assets/celebrations.png";
 import businessImg from "../assets/Business&Hospitality.png";
@@ -195,7 +196,13 @@ export function Home() {
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] text-left"
             >
-              Events We <span className="text-[#323192]">Serve</span>
+              <MarkerHighlight
+                before="Events We "
+                highlight="Serve"
+                markerColor="#38bdf8"
+                baseColor="#0f172a"
+                highlightedTextColor="#0f172a"
+              />
             </h2>
           </div>
 
@@ -255,7 +262,14 @@ export function Home() {
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0f172a] mb-3"
             >
-              Why Choose <span className="text-[#323192]">Oprism?</span>
+              <MarkerHighlight
+                before="Why Choose "
+                highlight="Oprism"
+                after="?"
+                markerColor="#38bdf8"
+                baseColor="#0f172a"
+                highlightedTextColor="#0f172a"
+              />
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
               More than hydration. A premium touch for every occasion.
