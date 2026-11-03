@@ -2,10 +2,63 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Award, Layers, Truck } from "lucide-react";
 import { Hero } from "../components/Hero";
+import { TestimonialsSection, type TestimonialItem } from "../components/ui/testimonials-with-marquee";
 import celebrationsImg from "../assets/celebrations.png";
 import businessImg from "../assets/Business&Hospitality.png";
 import specialOccasionsImg from "../assets/special-occasions.jpg";
 import bottlesImg from "../assets/herosection.png";
+
+// Sample testimonials with Telugu names in English
+const sampleTestimonials: TestimonialItem[] = [
+  {
+    author: {
+      name: "Sai Kiran",
+      handle: "@saikiran",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    },
+    text: "Ordered customized Oprism bottles for our family celebration. The presentation added a beautiful touch to the occasion.",
+  },
+  {
+    author: {
+      name: "Lakshmi Priya",
+      handle: "@lakshmipriya",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    },
+    text: "The personalized Oprism bottles looked elegant at our event. A lovely way to make the occasion feel special.",
+  },
+  {
+    author: {
+      name: "Venkata Krishna",
+      handle: "@venkatakrishna",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+    },
+    text: "We arranged Oprism bottled water for a business gathering. The presentation was professional and convenient.",
+  },
+  {
+    author: {
+      name: "Sravani",
+      handle: "@sravani",
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+    },
+    text: "The customized bottles made our celebration feel more personal. Loved the overall presentation.",
+  },
+  {
+    author: {
+      name: "Pavan Kumar",
+      handle: "@pavankumar",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
+    },
+    text: "An elegant bottled-water presentation for our event. Oprism gave us a convenient way to arrange refreshments.",
+  },
+  {
+    author: {
+      name: "Harika",
+      handle: "@harika",
+      avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80",
+    },
+    text: "Beautifully presented bottles that complemented our special occasion. The customized branding was a nice touch.",
+  },
+];
 
 export function Home() {
   const eventCards = [
@@ -195,6 +248,15 @@ export function Home() {
                 </Link>
               </div>
             </div>
+          </div>
+
+          {/* Testimonials with Marquee */}
+          <div className="mt-16 sm:mt-24 pt-10 sm:pt-14 border-t border-sky-100/70">
+            <TestimonialsSection
+              title="What People Say About Oprism"
+              description="Discover how Oprism brings a refreshing touch to celebrations, businesses and special occasions."
+              testimonials={sampleTestimonials}
+            />
           </div>
         </div>
       </section>
