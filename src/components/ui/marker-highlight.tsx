@@ -166,36 +166,38 @@ export function MarkerHighlight({
       }}
     >
       {before && <span>{before}</span>}
-      <span className="relative inline-block px-2.5 py-0.5 align-baseline">
-        {/* The Marker Stroke sweeping behind the word */}
+      <span className="relative inline-block mx-1 align-baseline">
+        {/* The solid aqua-blue rectangular marker strip tilted 1-2 degrees */}
         <span
           aria-hidden="true"
           style={{
             position: 'absolute',
-            inset: '-0.18em -0.44em -0.16em -0.20em',
+            inset: '-0.18em -0.36em -0.16em -0.26em',
             background: markerColor,
-            clipPath:
-              'polygon(0% 0%, 100% 0%, calc(100% - 0.10em) 14%, calc(100% - 0.22em) 28%, calc(100% - 0.34em) 42%, calc(100% - 0.40em) 52%, calc(100% - 0.40em) 100%, 0% 100%)',
-            opacity: 0.9,
+            borderRadius: 0,
+            opacity: 0.95,
             transformOrigin: 'left center',
-            transform: `scaleX(${markerScale})`,
+            transform: `scaleX(${markerScale}) rotate(${markerScale * -1.3}deg)`,
             zIndex: 0,
             pointerEvents: 'none',
           }}
         />
-        {/* Highlighted text with color transition */}
+        {/* Highlighted text with subtle counter-rotation and bold weight */}
         <span
           style={{
             position: 'relative',
             zIndex: 1,
             color: textColor,
+            fontWeight: fontWeight ?? 800,
+            display: 'inline-block',
+            transform: `rotate(${markerScale * 0.3}deg)`,
           }}
         >
           {highlight}
         </span>
       </span>
       {after && (
-        <span style={{ marginLeft: after.startsWith('?') ? '0.35em' : undefined }}>
+        <span style={{ marginLeft: after.startsWith('?') ? '0.28em' : undefined }}>
           {after}
         </span>
       )}
