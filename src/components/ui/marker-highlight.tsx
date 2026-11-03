@@ -166,16 +166,16 @@ export function MarkerHighlight({
       }}
     >
       {before && <span>{before}</span>}
-      <span className="relative inline-block px-1">
+      <span className="relative inline-block px-2.5 py-0.5 align-baseline">
         {/* The Marker Stroke sweeping behind the word */}
         <span
           aria-hidden="true"
           style={{
             position: 'absolute',
-            inset: '0.12em -0.08em 0.04em -0.12em',
+            inset: '-0.18em -0.44em -0.16em -0.20em',
             background: markerColor,
             clipPath:
-              'polygon(0% 0%, 96% 0.5%, 100% 0%, 100% 48%, calc(100% - 0.28em) 100%, 4% 99.5%, 0% 100%)',
+              'polygon(0% 0%, 100% 0%, calc(100% - 0.10em) 14%, calc(100% - 0.22em) 28%, calc(100% - 0.34em) 42%, calc(100% - 0.40em) 52%, calc(100% - 0.40em) 100%, 0% 100%)',
             opacity: 0.9,
             transformOrigin: 'left center',
             transform: `scaleX(${markerScale})`,
@@ -194,7 +194,11 @@ export function MarkerHighlight({
           {highlight}
         </span>
       </span>
-      {after && <span>{after}</span>}
+      {after && (
+        <span style={{ marginLeft: after.startsWith('?') ? '0.35em' : undefined }}>
+          {after}
+        </span>
+      )}
     </span>
   );
 }
