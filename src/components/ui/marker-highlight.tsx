@@ -172,9 +172,10 @@ export function MarkerHighlight({
           aria-hidden="true"
           style={{
             position: 'absolute',
-            inset: '0.12em -0.12em 0.04em -0.12em',
+            inset: '0.12em -0.08em 0.04em -0.12em',
             background: markerColor,
-            borderRadius: '0.22em',
+            clipPath:
+              'polygon(0% 0%, 96% 0.5%, 100% 0%, 100% 48%, calc(100% - 0.28em) 100%, 4% 99.5%, 0% 100%)',
             opacity: 0.9,
             transformOrigin: 'left center',
             transform: `scaleX(${markerScale})`,
