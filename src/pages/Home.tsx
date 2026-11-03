@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, ShieldCheck, CheckCircle2, Truck } from "lucide-react";
-import { useInView } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import { Hero } from "../components/Hero";
 import { SlidingNumber } from "../components/ui/sliding-number";
 import { TestimonialsSection, type TestimonialItem } from "../components/ui/testimonials-with-marquee";
@@ -106,8 +106,18 @@ export function Home() {
     },
   ];
 
-  const statsRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(statsRef, { once: true, margin: "-40px" });
+  const shouldReduceMotion = useReducedMotion();
+  const [statsCycle, setStatsCycle] = React.useState(0);
+
+  React.useEffect(() => {
+    if (shouldReduceMotion) return;
+
+    const interval = setInterval(() => {
+      setStatsCycle((prev) => prev + 1);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [shouldReduceMotion]);
 
   return (
     <div className="relative">
@@ -215,41 +225,38 @@ export function Home() {
             ))}
           </div>
 
-          {/* 2. Responsive Animated Statistics Row */}
-          <div
-            ref={statsRef}
-            className="mt-12 sm:mt-16 max-w-4xl mx-auto rounded-2xl sm:rounded-3xl bg-white/80 backdrop-blur-md border border-sky-100 shadow-sm p-6 sm:p-8"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-sky-100">
+          {/* 2. Responsive Animated Statistics Row (Transparent, Card-Free) */}
+          <div className="my-12 sm:my-16 max-w-5xl mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 md:gap-10 text-center">
               {/* Stat 1 */}
-              <div className="flex flex-col items-center text-center px-4 pt-2 sm:pt-0">
-                <div className="flex items-baseline justify-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#323192] tracking-tight mb-2">
-                  <SlidingNumber value={isInView ? 100 : 0} />
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#323192] ml-0.5">%</span>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
+                  <SlidingNumber value={100} cycle={statsCycle} />
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
                 </div>
-                <p className="text-slate-700 font-semibold text-xs sm:text-sm md:text-base">
+                <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
                   Quality Assurance
                 </p>
               </div>
 
               {/* Stat 2 */}
-              <div className="flex flex-col items-center text-center px-4 pt-6 sm:pt-0">
-                <div className="flex items-baseline justify-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#323192] tracking-tight mb-2">
-                  <SlidingNumber value={isInView ? 100 : 0} />
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#323192] ml-0.5">%</span>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
+                  <SlidingNumber value={100} cycle={statsCycle} />
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
                 </div>
-                <p className="text-slate-700 font-semibold text-xs sm:text-sm md:text-base">
+                <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
                   Customer Focus
                 </p>
               </div>
 
               {/* Stat 3 */}
-              <div className="flex flex-col items-center text-center px-4 pt-6 sm:pt-0">
-                <div className="flex items-baseline justify-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#323192] tracking-tight mb-2">
-                  <SlidingNumber value={isInView ? 99.9 : 0} decimalSeparator="." />
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#323192] ml-0.5">%</span>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
+                  <SlidingNumber value={99.9} decimalSeparator="." cycle={statsCycle} />
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
                 </div>
-                <p className="text-slate-700 font-semibold text-xs sm:text-sm md:text-base">
+                <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
                   Customer Satisfaction
                 </p>
               </div>
