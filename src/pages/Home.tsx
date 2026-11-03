@@ -8,6 +8,7 @@ import { TestimonialsSection, type TestimonialItem } from "../components/ui/test
 import celebrationsImg from "../assets/celebrations.png";
 import businessImg from "../assets/Business&Hospitality.png";
 import specialOccasionsImg from "../assets/special-occasions.jpg";
+import eventCtaBannerImg from "../assets/event-cta-banner.png";
 
 // Sample testimonials with Telugu names in English
 const sampleTestimonials: TestimonialItem[] = [
@@ -346,38 +347,85 @@ export function Home() {
         </div>
       </section>
 
-      {/* 4. Bottom Gateway Banner */}
+      {/* 4. Cinematic Event CTA Banner */}
       <section className="pt-6 sm:pt-10 pb-20 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-r from-[#323192] to-[#1e1e66] text-white text-center relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-              <span className="text-xs font-mono font-bold tracking-widest uppercase text-sky-200">
-                Bespoke Mineral Curation
-              </span>
-              <h3
-                style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
-              >
-                Ready to Commission Your Signature Surface?
-              </h3>
-              <p className="text-sky-100 text-sm sm:text-base leading-relaxed">
-                Our mineral consultants and structural engineers assist with private lot reservations, 3D luminescence simulations, and direct white-glove delivery.
-              </p>
-              <div className="flex flex-wrap justify-center items-center gap-4 pt-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-sky-900/40 bg-[#070B19]">
+            {/* Desktop & Tablet Layout (md:flex): Cinematic Wide Composition with Left-side Text and Right-side Bottle */}
+            <div className="hidden md:flex relative min-h-[500px] lg:min-h-[540px] items-center">
+              {/* Cinematic Background Banner Image */}
+              <img
+                src={eventCtaBannerImg}
+                alt="Planning for an Event with Oprism"
+                className="absolute inset-0 w-full h-full object-cover object-[80%_center] lg:object-right select-none"
+              />
+
+              {/* Gradient Overlays: Ensure Left Text Readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#070B19] via-[#070B19]/90 to-transparent w-[58%] lg:w-[50%] pointer-events-none" />
+
+              {/* Ambient Aqua/Blue Glow */}
+              <div className="absolute top-1/2 -translate-y-1/2 left-10 lg:left-16 w-72 h-72 bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
+
+              {/* Left-Aligned Heading and Glowing CTA */}
+              <div className="relative z-10 w-full px-8 md:px-12 lg:px-16 py-12 md:py-16">
+                <div className="max-w-[340px] lg:max-w-xl text-left">
+                  {/* Two-Line Exact Heading */}
+                  <h2
+                    style={{ fontFamily: "'Comfortaa', sans-serif" }}
+                    className="text-2xl md:text-3xl lg:text-5xl font-bold text-white tracking-tight leading-[1.2] mb-6 md:mb-8"
+                  >
+                    <span className="block">Planning for an Event?</span>
+                    <span className="block mt-2 sm:mt-3 text-sky-200">
+                      Let's Make It Special with Oprism.
+                    </span>
+                  </h2>
+
+                  {/* Prominent Glowing Blue CTA Button */}
+                  <div>
+                    <Link
+                      to="/contact"
+                      className="group inline-flex items-center gap-2.5 sm:gap-3 px-7 sm:px-9 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] text-white font-bold text-sm sm:text-base shadow-[0_0_25px_rgba(59,130,246,0.55)] hover:shadow-[0_0_35px_rgba(59,130,246,0.85)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                    >
+                      <span>Plan Your Event</span>
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1.5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Cleanly Stacked Layout (< md) */}
+            <div className="md:hidden flex flex-col bg-[#070B19]">
+              {/* Top Text Block */}
+              <div className="p-7 sm:p-9 text-left relative z-10">
+                <div className="absolute top-0 left-0 w-48 h-48 bg-sky-500/15 rounded-full blur-2xl pointer-events-none" />
+                <h2
+                  style={{ fontFamily: "'Comfortaa', sans-serif" }}
+                  className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-[1.2] mb-6"
+                >
+                  <span className="block">Planning for an Event?</span>
+                  <span className="block mt-2 text-sky-200">
+                    Let's Make It Special with Oprism.
+                  </span>
+                </h2>
+
                 <Link
                   to="/contact"
-                  className="px-8 py-3.5 rounded-full bg-white text-[#323192] font-bold text-xs shadow-lg hover:bg-sky-50 transition-all flex items-center gap-2"
+                  className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(59,130,246,0.5)] active:scale-95 transition-all"
                 >
-                  Schedule Private Consultation
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Plan Your Event</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
-                <Link
-                  to="/services"
-                  className="px-8 py-3.5 rounded-full border border-sky-300/40 text-white font-bold text-xs hover:bg-white/10 transition-all"
-                >
-                  View Occasion Portfolios
-                </Link>
+              </div>
+
+              {/* Bottom Image Block: Shows the chilled bottle with splash & luxury event clearly */}
+              <div className="relative h-64 sm:h-72 w-full overflow-hidden">
+                <img
+                  src={eventCtaBannerImg}
+                  alt="Chilled Oprism Bottle for Events"
+                  className="w-full h-full object-cover object-[80%_center] select-none"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#070B19] via-transparent to-transparent h-12 pointer-events-none" />
               </div>
             </div>
           </div>
