@@ -16,26 +16,14 @@ const TRANSITION = {
   mass: 0.3,
 };
 
-function Digit({
-  value,
-  place,
-  cycle = 0,
-}: {
-  value: number;
-  place: number;
-  cycle?: number;
-}) {
+function Digit({ value, place }: { value: number; place: number }) {
   const valueRoundedToPlace = Math.floor(value / place) % 10;
-  const initial = motionValue(valueRoundedToPlace);
+  const initial = motionValue(0);
   const animatedValue = useSpring(initial, TRANSITION);
 
   useEffect(() => {
-    if (cycle > 0) {
-      animatedValue.set(valueRoundedToPlace + cycle * 10);
-    } else {
-      animatedValue.set(valueRoundedToPlace);
-    }
-  }, [animatedValue, valueRoundedToPlace, cycle]);
+    animatedValue.set(valueRoundedToPlace);
+  }, [animatedValue, valueRoundedToPlace]);
 
   return (
     <div className='relative inline-block w-[1ch] overflow-x-visible overflow-y-clip leading-none tabular-nums'>
@@ -52,26 +40,17 @@ function Number({ mv, number }: { mv: MotionValue<number>; number: number }) {
   const [ref, bounds] = useMeasure();
 
   const y = useTransform(mv, (latest) => {
-    if (!bounds.height) return 0;
+    const h = bounds.height || 60;
     const placeValue = latest % 10;
     const offset = (10 + number - placeValue) % 10;
-    let memo = offset * bounds.height;
+    let memo = offset * h;
 
     if (offset > 5) {
-      memo -= 10 * bounds.height;
+      memo -= 10 * h;
     }
 
     return memo;
   });
-
-  // don't render the animated number until we know the height
-  if (!bounds.height) {
-    return (
-      <span ref={ref} className='invisible absolute'>
-        {number}
-      </span>
-    );
-  }
 
   return (
     <motion.span
@@ -90,14 +69,12 @@ export type SlidingNumberProps = {
   value: number;
   padStart?: boolean;
   decimalSeparator?: string;
-  cycle?: number;
 };
 
 export function SlidingNumber({
   value,
   padStart = false,
   decimalSeparator = '.',
-  cycle = 0,
 }: SlidingNumberProps) {
   const absValue = Math.abs(value);
   const [integerPart, decimalPart] = absValue.toString().split('.');
@@ -117,7 +94,6 @@ export function SlidingNumber({
           key={`pos-${integerPlaces[index]}`}
           value={integerValue}
           place={integerPlaces[index]}
-          cycle={cycle}
         />
       ))}
       {decimalPart && (
@@ -128,7 +104,6 @@ export function SlidingNumber({
               key={`decimal-${index}`}
               value={parseInt(decimalPart, 10)}
               place={Math.pow(10, decimalPart.length - index - 1)}
-              cycle={cycle}
             />
           ))}
         </>

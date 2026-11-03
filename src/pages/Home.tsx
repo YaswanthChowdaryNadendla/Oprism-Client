@@ -113,7 +113,7 @@ export function Home() {
     if (shouldReduceMotion) return;
 
     const interval = setInterval(() => {
-      setStatsCycle((prev) => prev + 1);
+      setStatsCycle((c) => c + 1);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -231,7 +231,7 @@ export function Home() {
               {/* Stat 1 */}
               <div className="flex flex-col items-center justify-center">
                 <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
-                  <SlidingNumber value={100} cycle={statsCycle} />
+                  <SlidingNumber key={`stat1-${statsCycle}`} value={100} />
                   <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
                 </div>
                 <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
@@ -242,7 +242,7 @@ export function Home() {
               {/* Stat 2 */}
               <div className="flex flex-col items-center justify-center">
                 <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
-                  <SlidingNumber value={100} cycle={statsCycle} />
+                  <SlidingNumber key={`stat2-${statsCycle}`} value={100} />
                   <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
                 </div>
                 <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
@@ -253,7 +253,7 @@ export function Home() {
               {/* Stat 3 */}
               <div className="flex flex-col items-center justify-center">
                 <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
-                  <SlidingNumber value={99.9} decimalSeparator="." cycle={statsCycle} />
+                  <SlidingNumber key={`stat3-${statsCycle}`} value={99.9} decimalSeparator="." />
                   <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
                 </div>
                 <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
