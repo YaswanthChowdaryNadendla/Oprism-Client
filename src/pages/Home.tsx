@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Award, Layers, Truck } from "lucide-react";
+import { ArrowRight, Sparkles, ShieldCheck, CheckCircle2, Truck } from "lucide-react";
+import { useInView } from "framer-motion";
 import { Hero } from "../components/Hero";
+import { SlidingNumber } from "../components/ui/sliding-number";
 import { TestimonialsSection, type TestimonialItem } from "../components/ui/testimonials-with-marquee";
 import celebrationsImg from "../assets/celebrations.png";
 import businessImg from "../assets/Business&Hospitality.png";
 import specialOccasionsImg from "../assets/special-occasions.jpg";
-import bottlesImg from "../assets/herosection.png";
 
 // Sample testimonials with Telugu names in English
 const sampleTestimonials: TestimonialItem[] = [
@@ -82,36 +83,31 @@ export function Home() {
     },
   ];
 
-  const benefits = [
+  const featureCards = [
     {
-      number: "01",
-      title: "Premium Presentation",
-      description:
-        "Elegant bottled-water presentation that complements every setting.",
+      title: "FSSAI Licensed",
+      description: "Operating with the applicable FSSAI food safety licence.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Quality & Safety Standards",
+      description: "Committed to maintaining food safety and quality standards.",
+      icon: CheckCircle2,
+    },
+    {
+      title: "Customized Bottle Branding",
+      description: "Personalized labels for events, businesses and special occasions.",
       icon: Sparkles,
     },
     {
-      number: "02",
-      title: "Customized Branding",
-      description:
-        "Personalized bottle labels tailored to your event or business.",
-      icon: Award,
-    },
-    {
-      number: "03",
-      title: "Solutions for Every Occasion",
-      description:
-        "Bottled-water solutions for celebrations, corporate events and hospitality.",
-      icon: Layers,
-    },
-    {
-      number: "04",
-      title: "Reliable Service",
-      description:
-        "Convenient ordering and coordinated delivery for your requirements.",
+      title: "Reliable Bulk Supply",
+      description: "Convenient bulk ordering for celebrations, corporate events and hospitality.",
       icon: Truck,
     },
   ];
+
+  const statsRef = React.useRef<HTMLDivElement>(null);
+  const isInView = useInView(statsRef, { once: true, margin: "-40px" });
 
   return (
     <div className="relative">
@@ -194,60 +190,81 @@ export function Home() {
             </p>
           </div>
 
-          {/* Two-Column Showcase Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Visual Column */}
-            <div className="lg:col-span-5 flex justify-center order-1 lg:order-1">
-              <div className="relative p-6 sm:p-8 flex items-center justify-center">
-                <div className="absolute w-64 h-64 sm:w-80 sm:h-80 bg-sky-200/50 rounded-full blur-3xl pointer-events-none -z-10" />
-                <img
-                  src={bottlesImg}
-                  alt="Oprism Premium Water Bottles"
-                  className="w-full max-w-[280px] sm:max-w-sm lg:max-w-md h-auto object-contain drop-shadow-xl select-none transition-transform duration-700 hover:scale-[1.03]"
-                />
-              </div>
-            </div>
-
-            {/* Benefits Column */}
-            <div className="lg:col-span-7 flex flex-col justify-center order-2 lg:order-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                {benefits.map((benefit) => (
-                  <div
-                    key={benefit.number}
-                    className="p-5 sm:p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-sky-100 shadow-sm hover:shadow-md hover:border-sky-200 transition-all duration-300 flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="font-mono text-xs font-bold text-[#323192] bg-sky-100/70 px-2.5 py-1 rounded-full">
-                          {benefit.number}
-                        </span>
-                        <benefit.icon className="w-4 h-4 text-[#323192]" />
-                      </div>
-                      <h3
-                        style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                        className="text-base sm:text-lg font-bold text-slate-900 mb-1.5 tracking-tight"
-                      >
-                        {benefit.title}
-                      </h3>
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        {benefit.description}
-                      </p>
-                    </div>
+          {/* 1. Four Feature Cards: Desktop: 4 in row, Tablet: 2 per row, Mobile: 1 per row */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            {featureCards.map((card) => (
+              <div
+                key={card.title}
+                className="p-6 rounded-2xl bg-white/85 backdrop-blur-md border border-sky-100/90 shadow-sm hover:shadow-md hover:border-sky-200 transition-all duration-300 flex flex-col justify-between h-full group"
+              >
+                <div>
+                  <div className="w-11 h-11 rounded-xl bg-sky-100/70 text-[#323192] flex items-center justify-center mb-4 group-hover:bg-[#323192] group-hover:text-white transition-colors duration-300">
+                    <card.icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                ))}
+                  <h3
+                    style={{ fontFamily: "'Comfortaa', sans-serif" }}
+                    className="text-base sm:text-lg font-bold text-slate-900 mb-2 tracking-tight"
+                  >
+                    {card.title}
+                  </h3>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    {card.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 2. Responsive Animated Statistics Row */}
+          <div
+            ref={statsRef}
+            className="mt-12 sm:mt-16 max-w-4xl mx-auto rounded-2xl sm:rounded-3xl bg-white/80 backdrop-blur-md border border-sky-100 shadow-sm p-6 sm:p-8"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-sky-100">
+              {/* Stat 1 */}
+              <div className="flex flex-col items-center text-center px-4 pt-2 sm:pt-0">
+                <div className="flex items-baseline justify-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#323192] tracking-tight mb-2">
+                  <SlidingNumber value={isInView ? 100 : 0} />
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#323192] ml-0.5">%</span>
+                </div>
+                <p className="text-slate-700 font-semibold text-xs sm:text-sm md:text-base">
+                  Quality Assurance
+                </p>
               </div>
 
-              {/* Discover Oprism CTA Button */}
-              <div className="mt-8 sm:mt-10 flex justify-center sm:justify-start">
-                <Link
-                  to="/about"
-                  className="group inline-flex items-center gap-2.5 px-8 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] transition-all"
-                >
-                  <span>Discover Oprism</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-                </Link>
+              {/* Stat 2 */}
+              <div className="flex flex-col items-center text-center px-4 pt-6 sm:pt-0">
+                <div className="flex items-baseline justify-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#323192] tracking-tight mb-2">
+                  <SlidingNumber value={isInView ? 100 : 0} />
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#323192] ml-0.5">%</span>
+                </div>
+                <p className="text-slate-700 font-semibold text-xs sm:text-sm md:text-base">
+                  Customer Focus
+                </p>
+              </div>
+
+              {/* Stat 3 */}
+              <div className="flex flex-col items-center text-center px-4 pt-6 sm:pt-0">
+                <div className="flex items-baseline justify-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#323192] tracking-tight mb-2">
+                  <SlidingNumber value={isInView ? 99.9 : 0} decimalSeparator="." />
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#323192] ml-0.5">%</span>
+                </div>
+                <p className="text-slate-700 font-semibold text-xs sm:text-sm md:text-base">
+                  Customer Satisfaction
+                </p>
               </div>
             </div>
+          </div>
+
+          {/* 3. Centered Discover Oprism CTA */}
+          <div className="flex justify-center mt-10 sm:mt-12 mb-4">
+            <Link
+              to="/about"
+              className="group inline-flex items-center gap-2.5 px-8 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <span>Discover Oprism</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+            </Link>
           </div>
 
           {/* Testimonials with Marquee */}
