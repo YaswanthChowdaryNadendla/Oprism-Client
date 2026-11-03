@@ -338,7 +338,7 @@ export function Home() {
           {/* Testimonials with Marquee */}
           <div className="mt-16 sm:mt-24 pt-10 sm:pt-14 border-t border-sky-100/70">
             <TestimonialsSection
-              title="What People Say About Oprism"
+              title="Voices of Trust, Stories of Oprism."
               description="Discover how Oprism brings a refreshing touch to celebrations, businesses and special occasions."
               testimonials={sampleTestimonials}
             />
