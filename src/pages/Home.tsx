@@ -107,16 +107,77 @@ export function Home() {
   ];
 
   const shouldReduceMotion = useReducedMotion();
-  const [statsCycle, setStatsCycle] = React.useState(0);
+  const [stat1, setStat1] = React.useState(100);
+  const [stat2, setStat2] = React.useState(100);
+  const [stat3, setStat3] = React.useState(99.9);
 
   React.useEffect(() => {
-    if (shouldReduceMotion) return;
+    if (shouldReduceMotion) {
+      setStat1(100);
+      setStat2(100);
+      setStat3(99.9);
+      return;
+    }
 
-    const interval = setInterval(() => {
-      setStatsCycle((c) => c + 1);
-    }, 3000);
+    let isMounted = true;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    let animFrameId: number | null = null;
 
-    return () => clearInterval(interval);
+    const animateCount = () => {
+      const startTime = performance.now();
+      const duration = 700; // 700ms smooth count-up slide
+
+      const tick = (now: number) => {
+        if (!isMounted) return;
+        const elapsed = now - startTime;
+        const progress = Math.min(1, elapsed / duration);
+
+        // Smooth cubic ease-out
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        const current1 = Math.round(ease * 100);
+        const current2 = Math.round(ease * 100);
+        const current3 =
+          progress >= 1
+            ? 99.9
+            : Math.max(0.1, Number((ease * 99.9).toFixed(1)));
+
+        setStat1(current1);
+        setStat2(current2);
+        setStat3(current3);
+
+        if (progress < 1) {
+          animFrameId = requestAnimationFrame(tick);
+        } else {
+          // Exactly at target
+          setStat1(100);
+          setStat2(100);
+          setStat3(99.9);
+
+          // Hold target for 3 seconds before next cycle
+          timeoutId = setTimeout(() => {
+            if (isMounted) {
+              animateCount();
+            }
+          }, 3000);
+        }
+      };
+
+      // Start count-up animation cycle
+      setStat1(0);
+      setStat2(0);
+      setStat3(0.1);
+      animFrameId = requestAnimationFrame(tick);
+    };
+
+    // Initial run on mount
+    animateCount();
+
+    return () => {
+      isMounted = false;
+      if (timeoutId) clearTimeout(timeoutId);
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+    };
   }, [shouldReduceMotion]);
 
   return (
@@ -231,7 +292,7 @@ export function Home() {
               {/* Stat 1 */}
               <div className="flex flex-col items-center justify-center">
                 <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
-                  <SlidingNumber key={`stat1-${statsCycle}`} value={100} />
+                  <SlidingNumber value={stat1} />
                   <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
                 </div>
                 <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
@@ -242,7 +303,7 @@ export function Home() {
               {/* Stat 2 */}
               <div className="flex flex-col items-center justify-center">
                 <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
-                  <SlidingNumber key={`stat2-${statsCycle}`} value={100} />
+                  <SlidingNumber value={stat2} />
                   <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
                 </div>
                 <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
@@ -253,7 +314,7 @@ export function Home() {
               {/* Stat 3 */}
               <div className="flex flex-col items-center justify-center">
                 <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
-                  <SlidingNumber key={`stat3-${statsCycle}`} value={99.9} decimalSeparator="." />
+                  <SlidingNumber value={stat3} decimalSeparator="." />
                   <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
                 </div>
                 <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
