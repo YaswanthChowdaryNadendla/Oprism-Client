@@ -34,8 +34,15 @@ export function About() {
     },
   ];
 
+  // Mobile sticky stacking offsets and z-indexes for Our Values cards
+  const mobileCardStickyClasses = [
+    "top-[80px] z-10",
+    "top-[96px] z-20",
+    "top-[112px] z-30",
+  ];
+
   return (
-    <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 relative z-10 overflow-hidden">
+    <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-16 sm:space-y-24">
         {/* ─── 1. About Hero ─── */}
         <section className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -169,22 +176,14 @@ export function About() {
             </h2>
           </motion.div>
 
-          {/* Three Value Items: appear sequentially with subtle upward fade */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          {/* Three Value Items: mobile sticky stacking, desktop 3-col grid */}
+          <div className="flex flex-col md:grid md:grid-cols-3 gap-4 md:gap-6 relative">
             {values.map((item, index) => {
               const Icon = item.icon;
               return (
-                <motion.div
+                <div
                   key={item.title}
-                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{
-                    duration: 0.75,
-                    delay: shouldReduceMotion ? 0 : index * 0.15,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="p-6 sm:p-7 rounded-2xl bg-white/80 backdrop-blur-md border border-sky-100/90 shadow-sm hover:shadow-md hover:border-sky-200 transition-all duration-300 flex flex-col justify-between"
+                  className={`p-6 sm:p-7 rounded-2xl bg-white/95 md:bg-white/80 backdrop-blur-md border border-sky-100/90 shadow-lg md:shadow-sm hover:shadow-md hover:border-sky-200 transition-all duration-300 flex flex-col justify-between group sticky md:static md:top-auto md:z-auto ${mobileCardStickyClasses[index]}`}
                 >
                   <div>
                     <div className="w-12 h-12 rounded-xl bg-sky-100/70 text-[#323192] flex items-center justify-center mb-4">
@@ -200,7 +199,7 @@ export function About() {
                       {item.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
