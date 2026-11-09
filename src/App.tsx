@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LoaderOverlay } from "./components/LoaderOverlay";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { BackToTop } from "./components/BackToTop";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Services } from "./pages/Services";
@@ -72,6 +73,7 @@ export function App() {
             </Routes>
           </main>
           <Footer />
+          <BackToTop />
         </div>
       </div>
     </BrowserRouter>
