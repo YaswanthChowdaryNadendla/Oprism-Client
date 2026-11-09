@@ -290,7 +290,7 @@ export function Home() {
           </div>
 
           {/* 1. Four Feature Cards: Desktop: 4 in row, Tablet: 2 per row, Mobile: 1 per row (sticky stacking) */}
-          <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 pb-44 sm:pb-0 relative">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative">
             {featureCards.map((card, index) => (
               <div
                 key={card.title}
@@ -315,37 +315,37 @@ export function Home() {
           </div>
 
           {/* 2. Responsive Animated Statistics Row (Transparent, Card-Free) */}
-          <div className="my-12 sm:my-16 max-w-5xl mx-auto px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 md:gap-10 text-center">
+          <div className="mt-8 mb-6 sm:my-16 max-w-5xl mx-auto px-2 sm:px-4">
+            <div className="grid grid-cols-3 gap-2 sm:gap-6 md:gap-10 text-center">
               {/* Stat 1 */}
               <div className="flex flex-col items-center justify-center">
-                <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
+                <div className="flex items-baseline justify-center text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-1 sm:mb-2 select-none">
                   <SlidingNumber value={stat1} />
-                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
+                  <span className="text-xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-0.5 sm:ml-1">%</span>
                 </div>
-                <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
+                <p className="text-slate-800 font-semibold text-[11px] sm:text-base tracking-tight sm:tracking-wide leading-tight">
                   Quality Assurance
                 </p>
               </div>
 
               {/* Stat 2 */}
               <div className="flex flex-col items-center justify-center">
-                <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
+                <div className="flex items-baseline justify-center text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-1 sm:mb-2 select-none">
                   <SlidingNumber value={stat2} />
-                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
+                  <span className="text-xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-0.5 sm:ml-1">%</span>
                 </div>
-                <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
+                <p className="text-slate-800 font-semibold text-[11px] sm:text-base tracking-tight sm:tracking-wide leading-tight">
                   Customer Focus
                 </p>
               </div>
 
               {/* Stat 3 */}
               <div className="flex flex-col items-center justify-center">
-                <div className="flex items-baseline justify-center text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-2 select-none">
+                <div className="flex items-baseline justify-center text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#323192] tracking-tight mb-1 sm:mb-2 select-none">
                   <SlidingNumber value={stat3} decimalSeparator="." />
-                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-1">%</span>
+                  <span className="text-xl sm:text-4xl md:text-5xl font-bold text-[#323192] ml-0.5 sm:ml-1">%</span>
                 </div>
-                <p className="text-slate-800 font-semibold text-sm sm:text-base tracking-wide">
+                <p className="text-slate-800 font-semibold text-[11px] sm:text-base tracking-tight sm:tracking-wide leading-tight">
                   Customer Satisfaction
                 </p>
               </div>
@@ -353,7 +353,7 @@ export function Home() {
           </div>
 
           {/* 3. Centered Discover Oprism CTA */}
-          <div className="flex justify-center mt-10 sm:mt-12 mb-4">
+          <div className="flex justify-center mt-6 sm:mt-12 mb-4">
             <Link
               to="/about"
               className="group inline-flex items-center gap-2.5 px-8 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300"
