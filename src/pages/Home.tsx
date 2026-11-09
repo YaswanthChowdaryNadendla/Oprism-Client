@@ -108,6 +108,14 @@ export function Home() {
     },
   ];
 
+  // Mobile sticky stacking offsets and z-indexes for Why Choose Oprism cards
+  const mobileCardStickyClasses = [
+    "top-[80px] z-10",
+    "top-[96px] z-20",
+    "top-[112px] z-30",
+    "top-[128px] z-40",
+  ];
+
   const shouldReduceMotion = useReducedMotion();
   const confettiRef = useRef<ConfettiHandle>(null);
   const [stat1, setStat1] = React.useState(100);
@@ -281,12 +289,12 @@ export function Home() {
             </p>
           </div>
 
-          {/* 1. Four Feature Cards: Desktop: 4 in row, Tablet: 2 per row, Mobile: 1 per row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            {featureCards.map((card) => (
+          {/* 1. Four Feature Cards: Desktop: 4 in row, Tablet: 2 per row, Mobile: 1 per row (sticky stacking) */}
+          <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 pb-44 sm:pb-0 relative">
+            {featureCards.map((card, index) => (
               <div
                 key={card.title}
-                className="p-6 rounded-2xl bg-white/85 backdrop-blur-md border border-sky-100/90 shadow-sm hover:shadow-md hover:border-sky-200 transition-all duration-300 flex flex-col justify-between h-full group"
+                className={`p-6 rounded-2xl bg-white/95 sm:bg-white/85 backdrop-blur-md border border-sky-100/90 shadow-lg sm:shadow-sm hover:shadow-md hover:border-sky-200 transition-all duration-300 flex flex-col justify-between h-full group sticky sm:static sm:top-auto sm:z-auto ${mobileCardStickyClasses[index]}`}
               >
                 <div>
                   <div className="w-11 h-11 rounded-xl bg-sky-100/70 text-[#323192] flex items-center justify-center mb-4 group-hover:bg-[#323192] group-hover:text-white transition-colors duration-300">
