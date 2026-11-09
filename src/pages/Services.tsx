@@ -1,213 +1,560 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import { Sparkles, Heart, Wine, PartyPopper, Building2, Gem, ArrowRight, CheckCircle2 } from "lucide-react";
-import prismImg from "../assets/prism-crystal.png";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import {
+  ArrowRight,
+  Sparkles,
+  Layers,
+  FileText,
+  Calculator,
+  Truck,
+  Droplets,
+  Heart,
+  Building2,
+  PackageCheck,
+  CheckCircle2,
+  Calendar,
+  Image as ImageIcon,
+} from "lucide-react";
 
+import bottleImg from "../assets/herosection.png";
+import celebrationsImg from "../assets/celebrations.png";
+import specialOccasionsImg from "../assets/special-occasions.jpg";
+import businessImg from "../assets/Business&Hospitality.png";
+import bulkImg from "../assets/event-cta-banner.png";
+
+/**
+ * Services Page
+ * Premium, modern SaaS-style visual experience with smooth layered parallax
+ * scrolling, scroll-reveal interactions, and bespoke water services showcase.
+ */
 export function Services() {
-  const servicesList = [
+  const containerRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  // Scroll tracking for layered parallax effects
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Parallax transforms for hero visuals and floating water elements
+  const yHeroBottle = useTransform(scrollYProgress, [0, 0.3], shouldReduceMotion ? [0, 0] : [0, -45]);
+  const yFloatingOrb1 = useTransform(scrollYProgress, [0, 0.4], shouldReduceMotion ? [0, 0] : [-20, 60]);
+  const yFloatingOrb2 = useTransform(scrollYProgress, [0, 0.4], shouldReduceMotion ? [0, 0] : [30, -50]);
+  const yCustomShowcase = useTransform(scrollYProgress, [0.3, 0.7], shouldReduceMotion ? [0, 0] : [30, -30]);
+
+  // Four primary service offerings
+  const services = [
     {
-      id: "weddings",
-      icon: <Heart className="w-6 h-6 text-pink-600" />,
-      badge: "Signature Occasion",
-      title: "Weddings & Receptions",
-      tagline: "Luminescent Romance Carved in Geological Wonder",
-      desc: "Elevate your most memorable celebration with breathtaking mineral installations. From backlit crystal cocktail bars and bridal stage backdrop slabs to customized crystal quartz table centerpieces that glow under ambient candlelight.",
-      highlights: [
-        "Backlit translucent quartzite bridal and bar facades",
-        "Personalized couple monograms engraved on natural stone",
-        "Curated gemstone table runners and candle plinths",
-        "Keepsake mineral favors for wedding party and guests",
-      ],
-      gradient: "from-pink-500/10 via-purple-500/10 to-indigo-500/10",
-      accentColor: "border-pink-200",
+      id: "customized-bottles",
+      title: "Customized Bottles",
+      description:
+        "Personalized bottle labels with names, event details, logos and designs.",
+      image: celebrationsImg,
+      icon: Sparkles,
+      badge: "Bespoke Personalization",
+      highlights: ["Names & Monograms", "Corporate Logos", "Waterproof Matte/Gloss"],
     },
     {
-      id: "custom-bottles",
-      icon: <Wine className="w-6 h-6 text-[#323192]" />,
-      badge: "Exclusive Craft",
-      title: "Customized Bottles & Vessels",
-      tagline: "Handcrafted Luxury Infusion Vessels & Water Bottles",
-      desc: "Each custom Oprism bottle is carved and adorned with genuine crystal facets. Perfect for luxury hotels, private dining, executive gifts, and bespoke event gifting with custom crests, names, and metal trim.",
-      highlights: [
-        "Precision laser-etched monograms and company crests",
-        "Natural quartz crystal infuser chambers",
-        "Jewel-grade gold, silver, and titanium cap options",
-        "Limited-edition numbered gift presentation boxes",
-      ],
-      gradient: "from-sky-500/10 via-blue-500/10 to-indigo-500/10",
-      accentColor: "border-sky-200",
+      id: "wedding-celebrations",
+      title: "Wedding & Celebration Supply",
+      description:
+        "Bottled-water arrangements for weddings, birthdays and celebrations.",
+      image: specialOccasionsImg,
+      icon: Heart,
+      badge: "Milestone Occasions",
+      highlights: ["Theme-Matched Styling", "Banquet Table Placement", "Event Timing Support"],
     },
     {
-      id: "birthday-parties",
-      icon: <PartyPopper className="w-6 h-6 text-amber-600" />,
-      badge: "Private Festivities",
-      title: "Birthday Parties & Celebrations",
-      tagline: "Milestone Moments Illuminated with Radiance",
-      desc: "Transform private anniversary dinners, milestone birthdays, and gala dinners into unforgettable sensory experiences with vibrant colored gemstone pedestals and radiant mineral decor.",
-      highlights: [
-        "Color-matched mineral themes (Amethyst, Rose, Azure, Emerald)",
-        "Translucent dessert buffet displays and cake pedestals",
-        "VIP lounge tables with dynamic LED lighting",
-        "Bespoke engraved birthday gift sets",
-      ],
-      gradient: "from-amber-500/10 via-orange-500/10 to-yellow-500/10",
-      accentColor: "border-amber-200",
+      id: "corporate-supply",
+      title: "Corporate & Business Supply",
+      description:
+        "Professional bottled-water arrangements for offices, meetings and corporate events.",
+      image: businessImg,
+      icon: Building2,
+      badge: "Executive Hospitality",
+      highlights: ["Boardroom Presentation", "Brand Co-Marketing", "Scheduled Recurring Delivery"],
     },
     {
-      id: "corporate-events",
-      icon: <Building2 className="w-6 h-6 text-indigo-700" />,
-      badge: "Executive Class",
-      title: "Corporate Events & Galas",
-      tagline: "Monumental Statements for Industry Leaders",
-      desc: "Make an indelible impression at annual summits, prestigious awards galas, and VIP stakeholder receptions. Our architectural slabs and branded mineral installations communicate uncompromising prestige.",
-      highlights: [
-        "Monumental mineral keynote stages and podium facades",
-        "Custom handcrafted mineral awards and trophies",
-        "Branded luxury product launch plinths",
-        "Turnkey white-glove setup and on-site event coordination",
-      ],
-      gradient: "from-indigo-500/10 via-blue-600/10 to-slate-900/10",
-      accentColor: "border-indigo-200",
+      id: "bulk-orders",
+      title: "Bulk Bottled-Water Orders",
+      description:
+        "Convenient ordering arrangements for larger requirements.",
+      image: bulkImg,
+      icon: PackageCheck,
+      badge: "High-Volume Logistics",
+      highlights: ["Large Case Capacities", "Venue Doorstep Logistics", "Consistent Pure Quality"],
     },
   ];
 
-  const processSteps = [
-    { step: "01", title: "Vision Consultation", desc: "Share your event date, theme, and architectural specifications with our dedicated concierge." },
-    { step: "02", title: "Mineral Selection", desc: "Select from our private reserve of translucent quartz, agate, and marble formations." },
-    { step: "03", title: "Bespoke Fabrication", desc: "Sub-millimeter CNC cutting, custom engraving, and LED luminescence calibration." },
-    { step: "04", title: "White-Glove Delivery", desc: "Seismic crating and flawless on-site installation overseen by our senior craftsmen." },
+  // How It Works Steps
+  const steps = [
+    {
+      number: "01",
+      title: "Choose Your Requirement",
+      description: "Select bottle quantities, occasion type, and whether you need custom branding or standard pure supply.",
+      icon: Layers,
+    },
+    {
+      number: "02",
+      title: "Share Your Details",
+      description: "Provide your event schedule, venue location, names, logos, or bespoke design references.",
+      icon: FileText,
+    },
+    {
+      number: "03",
+      title: "Discuss Pricing & Availability",
+      description: "Receive our transparent quotation, custom label previews, and delivery timeframe confirmation.",
+      icon: Calculator,
+    },
+    {
+      number: "04",
+      title: "Confirm Your Order",
+      description: "Finalize your order and enjoy seamless, white-glove delivery directly to your event venue.",
+      icon: Truck,
+    },
   ];
+
+  // Customization features for the product showcase
+  const customFeatures = [
+    {
+      icon: Sparkles,
+      title: "Names & Monograms",
+      desc: "Honor guests and couples with custom typography, event titles, and personal crests.",
+    },
+    {
+      icon: Building2,
+      title: "Logos & Corporate Identity",
+      desc: "Promote your brand at conferences, investor summits, and client lounges with crisp logo reproduction.",
+    },
+    {
+      icon: Calendar,
+      title: "Dates & Milestones",
+      desc: "Commemorate specific anniversaries, wedding dates, or milestone birthdays with precision printing.",
+    },
+    {
+      icon: Droplets,
+      title: "Ice-Resistant Waterproof Labels",
+      desc: "Engineered high-durability waterproof substrates that stay flawless inside ice buckets and chillers.",
+    },
+  ];
+
+  const handleExploreClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const target = document.getElementById("services-catalog");
+    target?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <div className="pt-32 pb-24 relative z-10">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-300/60 bg-white/60 backdrop-blur-md shadow-sm mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-[#323192]" />
-            <span className="text-xs font-bold text-[#323192] tracking-wider uppercase">
-              Curated Occasions &amp; Bespoke Craft
-            </span>
+    <div ref={containerRef} className="pt-28 sm:pt-36 pb-16 sm:pb-24 relative z-10 overflow-hidden">
+      {/* ─── Layered Ambient Water Droplets & Floating Depth Orbs ─── */}
+      <motion.div
+        style={{ y: yFloatingOrb1 }}
+        className="pointer-events-none absolute top-40 -left-20 w-80 h-80 rounded-full bg-sky-300/20 blur-3xl -z-10"
+        aria-hidden="true"
+      />
+      <motion.div
+        style={{ y: yFloatingOrb2 }}
+        className="pointer-events-none absolute top-[700px] -right-20 w-96 h-96 rounded-full bg-blue-300/15 blur-3xl -z-10"
+        aria-hidden="true"
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-20 sm:space-y-28">
+        {/* ─── 1. Services Hero ─── */}
+        <section className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Heading, Description & CTA */}
+          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-sky-300/70 bg-white/70 backdrop-blur-md shadow-xs text-xs font-semibold text-[#323192]"
+            >
+              <Droplets className="w-3.5 h-3.5 text-[#323192]" />
+              <span>Bespoke Mineral Hydration Solutions</span>
+            </motion.div>
+
+            <motion.h1
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              style={{ fontFamily: "'Comfortaa', sans-serif" }}
+              className="text-3xl sm:text-5xl lg:text-[56px] font-bold text-slate-900 tracking-tight leading-[1.12]"
+            >
+              Refreshing Solutions <br className="hidden sm:inline" />
+              <span className="text-[#323192]">for Every Occasion.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal"
+            >
+              From personalized bottles to bulk bottled-water arrangements, Oprism brings a
+              refreshing touch to every occasion.
+            </motion.p>
+
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="pt-2"
+            >
+              <a
+                href="#services-catalog"
+                onClick={handleExploreClick}
+                className="group inline-flex items-center gap-2.5 px-8 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <span>Explore Our Services</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+              </a>
+            </motion.div>
           </div>
 
-          <h1
-            style={{ fontFamily: "'Comfortaa', sans-serif" }}
-            className="text-4xl sm:text-6xl font-bold tracking-tight text-slate-900 leading-tight mb-6"
+          {/* Right Column: Premium Bottled-Water Visual with Parallax Float */}
+          <motion.div
+            style={{ y: yHeroBottle }}
+            initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex justify-center items-center relative"
           >
-            Services &amp; Occasions
-          </h1>
+            <div className="relative w-full max-w-sm sm:max-w-md flex items-center justify-center">
+              {/* Radial glow and floating droplets */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-sky-400/25 via-blue-500/15 to-transparent rounded-full blur-3xl -z-10 scale-95" />
 
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            From intimate weddings and milestone birthday celebrations to corporate galas and customized crystal vessels, Oprism brings the beauty of pure light to every occasion.
-          </p>
-        </div>
+              <img
+                src={bottleImg}
+                alt="Oprism Bottled Water Collection"
+                className="w-full h-auto object-contain drop-shadow-2xl max-h-[380px] sm:max-h-[460px] select-none"
+              />
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-28">
-          {servicesList.map((service) => (
-            <div
-              key={service.id}
-              className={`p-8 sm:p-10 rounded-3xl bg-white/75 backdrop-blur-md border ${service.accentColor} shadow-xl shadow-sky-950/5 relative overflow-hidden flex flex-col justify-between`}
+              {/* Floating feature pill 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="hidden sm:flex absolute -bottom-3 -left-4 items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-sky-200/80 shadow-lg text-xs font-semibold text-slate-800"
+              >
+                <Sparkles className="w-4 h-4 text-[#323192]" />
+                <span>Custom Label Design</span>
+              </motion.div>
+
+              {/* Floating feature pill 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: -15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="hidden sm:flex absolute top-6 -right-4 items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-sky-200/80 shadow-lg text-xs font-semibold text-slate-800"
+              >
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>Pristine Multi-Stage Purity</span>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ─── 2. Our Services Cards ─── */}
+        <section id="services-catalog" className="space-y-10 sm:space-y-12">
+          {/* Section Header */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center max-w-2xl mx-auto space-y-3"
+          >
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block">
+              Tailored Hydration
+            </span>
+            <h2
+              style={{ fontFamily: "'Comfortaa', sans-serif" }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight"
             >
-              <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${service.gradient} rounded-full blur-3xl pointer-events-none`} />
+              Our Services
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Explore our curated bottled-water options engineered for celebrations, business hospitality,
+              and high-volume event catering.
+            </p>
+          </motion.div>
 
-              <div>
-                <div className="flex items-center justify-between gap-4 mb-6">
-                  <div className="p-3 rounded-2xl bg-white/90 border border-sky-100 shadow-sm w-fit">
-                    {service.icon}
-                  </div>
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#323192] bg-sky-100/60 px-3 py-1 rounded-full">
-                    {service.badge}
-                  </span>
-                </div>
-
-                <h3
-                  style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                  className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2"
+          {/* 4 Service Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              const isEven = index % 2 === 0;
+              return (
+                <motion.div
+                  key={service.id}
+                  initial={
+                    shouldReduceMotion
+                      ? { opacity: 1, x: 0 }
+                      : { opacity: 0, x: isEven ? -40 : 40 }
+                  }
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="group rounded-3xl bg-white/80 backdrop-blur-md border border-sky-100/90 shadow-sm hover:shadow-xl hover:border-sky-300/60 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden flex flex-col justify-between"
                 >
-                  {service.title}
-                </h3>
-                <div className="text-xs font-medium text-[#323192] mb-4">
-                  {service.tagline}
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                  {service.desc}
-                </p>
-
-                <div className="space-y-2.5 mb-8">
-                  {service.highlights.map((h, i) => (
-                    <div key={i} className="flex items-start gap-2.5 text-xs text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-[#323192] shrink-0 mt-0.5" />
-                      <span>{h}</span>
+                  {/* Card Image with Parallax Zoom Container */}
+                  <div className="relative h-56 sm:h-64 overflow-hidden bg-sky-50">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent" />
+                    
+                    {/* Badge */}
+                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[11px] font-bold text-[#323192] shadow-xs">
+                      <Icon className="w-3.5 h-3.5 text-[#323192]" />
+                      <span>{service.badge}</span>
                     </div>
-                  ))}
-                </div>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-6 sm:p-8 flex flex-col flex-grow justify-between space-y-4">
+                    <div>
+                      <h3
+                        style={{ fontFamily: "'Comfortaa', sans-serif" }}
+                        className="text-xl sm:text-2xl font-bold text-slate-900 mb-2.5 group-hover:text-[#323192] transition-colors"
+                      >
+                        {service.title}
+                      </h3>
+                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    {/* Feature chips */}
+                    <div className="pt-2 border-t border-sky-100/70 flex flex-wrap gap-2">
+                      {service.highlights.map((h) => (
+                        <span
+                          key={h}
+                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-700 bg-sky-50/80 px-2.5 py-1 rounded-lg border border-sky-100/80"
+                        >
+                          <CheckCircle2 className="w-3 h-3 text-[#323192]" />
+                          {h}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ─── 3. Customized Bottle Experience ─── */}
+        <section className="relative rounded-3xl p-6 sm:p-10 md:p-14 bg-white/80 backdrop-blur-md border border-white/90 shadow-xl shadow-sky-950/5 overflow-hidden">
+          {/* Subtle Ambient Radial Highlight */}
+          <div className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-sky-400/20 to-indigo-500/10 blur-3xl" />
+
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left: Product Showcase Information */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7 space-y-6 text-center lg:text-left"
+            >
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#323192]/10 text-xs font-mono font-bold uppercase tracking-wider text-[#323192]">
+                Customized Bottle Experience
               </div>
 
+              <h2
+                style={{ fontFamily: "'Comfortaa', sans-serif" }}
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight"
+              >
+                Make Every Bottle <br />
+                <span className="text-[#323192]">Personal.</span>
+              </h2>
+
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
+                Transform ordinary bottled water into an exquisite branded centerpiece. We collaborate
+                with hosts, event planners, and marketing directors to customize labels with bespoke
+                names, corporate logos, celebratory dates, and distinct aesthetic themes.
+              </p>
+
+              {/* 4 Feature Items */}
+              <div className="grid sm:grid-cols-2 gap-4 pt-2 text-left">
+                {customFeatures.map((feat) => {
+                  const FIcon = feat.icon;
+                  return (
+                    <div
+                      key={feat.title}
+                      className="p-4 rounded-2xl bg-white/60 border border-sky-100 shadow-xs hover:border-sky-300/60 transition-colors"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-sky-100 text-[#323192] flex items-center justify-center mb-2.5">
+                        <FIcon className="w-4 h-4" />
+                      </div>
+                      <h4 className="font-bold text-xs sm:text-sm text-slate-900 mb-1">
+                        {feat.title}
+                      </h4>
+                      <p className="text-[11px] sm:text-xs text-slate-500 leading-relaxed font-normal">
+                        {feat.desc}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+
+            {/* Right: Layered Visual Composition with Subtle Scroll Speed Shift */}
+            <motion.div
+              style={{ y: yCustomShowcase }}
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 flex justify-center items-center"
+            >
+              <div className="relative w-full max-w-sm rounded-3xl overflow-hidden border border-sky-100 shadow-lg group">
+                <img
+                  src={celebrationsImg}
+                  alt="Personalized Oprism Bottle Showcase"
+                  className="w-full h-auto object-cover max-h-[420px] group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                  <span className="text-xs uppercase tracking-widest font-mono text-sky-300 font-bold">
+                    Signature Personalization
+                  </span>
+                  <p className="text-sm font-semibold text-white/95 mt-1">
+                    Tailored for weddings, birthdays &amp; executive summits
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ─── 4. How It Works (Modern Horizontal Step-Based Layout) ─── */}
+        <section className="space-y-12">
+          {/* Header */}
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center max-w-2xl mx-auto space-y-3"
+          >
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block">
+              Simple 4-Step Process
+            </span>
+            <h2
+              style={{ fontFamily: "'Comfortaa', sans-serif" }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight"
+            >
+              How It Works
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              From your initial request to doorstep event delivery, we make ordering effortless.
+            </p>
+          </motion.div>
+
+          {/* 4 Steps in Horizontal Grid with Connectors */}
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Desktop connecting track line behind cards */}
+            <div
+              className="hidden lg:block absolute top-12 left-12 right-12 h-0.5 bg-gradient-to-r from-sky-200 via-[#323192]/30 to-sky-200 -z-10"
+              aria-hidden="true"
+            />
+
+            {steps.map((step, index) => {
+              const StepIcon = step.icon;
+              return (
+                <motion.div
+                  key={step.number}
+                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{
+                    duration: 0.75,
+                    delay: shouldReduceMotion ? 0 : index * 0.15,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="p-6 sm:p-7 rounded-3xl bg-white/80 backdrop-blur-md border border-sky-100 shadow-sm hover:shadow-lg hover:border-sky-300/60 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative group"
+                >
+                  <div>
+                    {/* Step Number & Icon Header */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="w-12 h-12 rounded-2xl bg-sky-100/80 text-[#323192] flex items-center justify-center group-hover:bg-[#323192] group-hover:text-white transition-colors duration-300">
+                        <StepIcon className="w-5 h-5" />
+                      </div>
+                      <span className="text-2xl font-extrabold font-mono text-sky-200 group-hover:text-[#323192] transition-colors">
+                        {step.number}
+                      </span>
+                    </div>
+
+                    <h3
+                      style={{ fontFamily: "'Comfortaa', sans-serif" }}
+                      className="text-base sm:text-lg font-bold text-slate-900 mb-2 tracking-tight group-hover:text-[#323192] transition-colors"
+                    >
+                      {step.title}
+                    </h3>
+
+                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ─── 5. Closing CTA ─── */}
+        <section className="flex justify-center">
+          <div className="w-full max-w-4xl rounded-3xl bg-gradient-to-br from-[#070d26] via-[#0d173d] to-[#1a255a] border border-sky-400/15 shadow-2xl shadow-indigo-950/20 px-6 sm:px-12 md:px-16 py-10 sm:py-12 md:py-14 text-center flex flex-col items-center justify-center relative overflow-hidden">
+            {/* CTA Heading: reveal from left */}
+            <motion.h2
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              style={{ fontFamily: "'Comfortaa', sans-serif" }}
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight mb-3 sm:mb-4"
+            >
+              Planning Something Special?
+            </motion.h2>
+
+            {/* Description */}
+            <motion.p
+              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-sky-100/90 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-6 sm:mb-8 font-normal"
+            >
+              Let's create a refreshing experience for your next celebration or business event.
+            </motion.p>
+
+            {/* Button */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
               <Link
                 to="/contact"
-                className="w-full py-3.5 rounded-full bg-[#323192] text-white font-bold text-xs shadow-md shadow-[#323192]/20 hover:bg-[#252478] transition-all flex items-center justify-center gap-2 mt-auto"
+                className="group inline-flex items-center gap-2 sm:gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-white text-[#0a1128] hover:bg-sky-50 font-bold text-sm sm:text-base shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
               >
-                Inquire for {service.title}
-                <ArrowRight className="w-4 h-4" />
+                <span>Request a Quote</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#0a1128] transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
-            </div>
-          ))}
-        </div>
-
-        {/* 4-Step Process Section */}
-        <div className="p-10 sm:p-14 rounded-3xl bg-white/70 backdrop-blur-md border border-white/80 shadow-xl mb-24">
-          <div className="text-center max-w-xl mx-auto mb-14">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#323192] block mb-2">
-              Flawless Execution
-            </span>
-            <h3
-              style={{ fontFamily: "'Comfortaa', sans-serif" }}
-              className="text-2xl sm:text-4xl font-bold text-slate-900"
-            >
-              How We Bring Your Vision to Life
-            </h3>
+            </motion.div>
           </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((p, idx) => (
-              <div key={idx} className="relative">
-                <div className="font-mono text-3xl font-bold text-sky-400/80 mb-3">
-                  {p.step}
-                </div>
-                <h4
-                  style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                  className="text-lg font-bold text-slate-900 mb-2"
-                >
-                  {p.title}
-                </h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {p.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Custom Consultation CTA */}
-        <div className="text-center p-10 sm:p-14 rounded-3xl bg-gradient-to-r from-[#323192] to-[#1e1e66] text-white shadow-2xl max-w-4xl mx-auto">
-          <h3
-            style={{ fontFamily: "'Comfortaa', sans-serif" }}
-            className="text-2xl sm:text-3xl font-bold text-white mb-4"
-          >
-            Planning a Signature Celebration?
-          </h3>
-          <p className="text-sky-100 text-sm max-w-xl mx-auto mb-8 leading-relaxed">
-            Our event curators offer private sample previews and custom 3D lighting renderings for weddings, corporate summits, and customized bottles.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-[#323192] font-bold text-xs shadow-lg hover:bg-sky-50 transition-all"
-          >
-            Request Bespoke Event Consultation
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+        </section>
       </div>
     </div>
   );
