@@ -21,6 +21,127 @@ import specialOccasionsImg from "../assets/special-occasions.jpg";
 import businessImg from "../assets/Business&Hospitality.png";
 import bulkImg from "../assets/event-cta-banner.png";
 
+interface StepItem {
+  number: string;
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+/**
+ * Mobile-only Layered Step Cards with Scroll-Driven Depth Transitions
+ * As the user scrolls, each subsequent card slides upward over previous cards,
+ * while earlier cards subtly scale down and recede into the background.
+ */
+function MobileStepCards({
+  steps,
+  shouldReduceMotion,
+}: {
+  steps: StepItem[];
+  shouldReduceMotion: boolean | null;
+}) {
+  const card1Ref = useRef<HTMLDivElement>(null);
+  const card2Ref = useRef<HTMLDivElement>(null);
+  const card3Ref = useRef<HTMLDivElement>(null);
+
+  // Scroll tracking as incoming cards approach their sticky positions
+  const { scrollYProgress: card1Progress } = useScroll({
+    target: card1Ref,
+    offset: ["start 300px", "start 96px"],
+  });
+
+  const { scrollYProgress: card2Progress } = useScroll({
+    target: card2Ref,
+    offset: ["start 320px", "start 116px"],
+  });
+
+  const { scrollYProgress: card3Progress } = useScroll({
+    target: card3Ref,
+    offset: ["start 340px", "start 136px"],
+  });
+
+  // Layered scale and opacity depth transforms
+  const card0Scale = useTransform([card1Progress, card2Progress], (values: number[]) => {
+    if (shouldReduceMotion) return 1;
+    const [p1 = 0, p2 = 0] = values;
+    return 1 - p1 * 0.05 - p2 * 0.03;
+  });
+  const card0Opacity = useTransform([card1Progress, card2Progress], (values: number[]) => {
+    if (shouldReduceMotion) return 1;
+    const [p1 = 0, p2 = 0] = values;
+    return 1 - p1 * 0.1 - p2 * 0.06;
+  });
+
+  const card1Scale = useTransform(card2Progress, (p) => {
+    if (shouldReduceMotion) return 1;
+    return 1 - p * 0.05;
+  });
+  const card1Opacity = useTransform(card2Progress, (p) => {
+    if (shouldReduceMotion) return 1;
+    return 1 - p * 0.1;
+  });
+
+  const card2Scale = useTransform(card3Progress, (p) => {
+    if (shouldReduceMotion) return 1;
+    return 1 - p * 0.05;
+  });
+  const card2Opacity = useTransform(card3Progress, (p) => {
+    if (shouldReduceMotion) return 1;
+    return 1 - p * 0.1;
+  });
+
+  const cardConfigs = [
+    { scale: card0Scale, opacity: card0Opacity, ref: undefined, stickyClass: "sticky top-[76px] z-10" },
+    { scale: card1Scale, opacity: card1Opacity, ref: card1Ref, stickyClass: "sticky top-[96px] z-20" },
+    { scale: card2Scale, opacity: card2Opacity, ref: card2Ref, stickyClass: "sticky top-[116px] z-30" },
+    { scale: undefined, opacity: undefined, ref: card3Ref, stickyClass: "sticky top-[136px] z-40" },
+  ];
+
+  return (
+    <div className="block sm:hidden space-y-6 relative pb-14">
+      {steps.map((step, index) => {
+        const StepIcon = step.icon;
+        const config = cardConfigs[index];
+        return (
+          <motion.div
+            key={step.number}
+            ref={config.ref}
+            style={{
+              scale: config.scale,
+              opacity: config.opacity,
+              transformOrigin: "top center",
+            }}
+            className={`${config.stickyClass} p-6 rounded-3xl bg-white/95 backdrop-blur-md border border-sky-100/90 shadow-xl shadow-sky-950/10 flex flex-col justify-between`}
+          >
+            <div>
+              {/* Step Number & Icon Header */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-11 h-11 rounded-2xl bg-sky-100/80 text-[#323192] flex items-center justify-center">
+                  <StepIcon className="w-5 h-5" />
+                </div>
+                <span className="text-2xl font-extrabold font-mono text-sky-200">
+                  {step.number}
+                </span>
+              </div>
+
+              <h3
+                style={{ fontFamily: "'Comfortaa', sans-serif" }}
+                className="text-base font-bold text-slate-900 mb-2 tracking-tight"
+              >
+                {step.title}
+              </h3>
+
+              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+                {step.description}
+              </p>
+            </div>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
 /**
  * Services Page
  * Premium, modern SaaS-style visual experience with smooth layered parallax
@@ -120,18 +241,18 @@ export function Services() {
   };
 
   return (
-    <div ref={containerRef} className="pt-28 sm:pt-36 pb-16 sm:pb-24 relative z-10 overflow-hidden">
+    <div ref={containerRef} className="pt-28 sm:pt-36 pb-16 sm:pb-24 relative z-10 overflow-x-clip">
       {/* ─── Layered Ambient Water Droplets & Floating Depth Orbs ─── */}
-      <motion.div
-        style={{ y: yFloatingOrb1 }}
-        className="pointer-events-none absolute top-40 -left-20 w-80 h-80 rounded-full bg-sky-300/20 blur-3xl -z-10"
-        aria-hidden="true"
-      />
-      <motion.div
-        style={{ y: yFloatingOrb2 }}
-        className="pointer-events-none absolute top-[700px] -right-20 w-96 h-96 rounded-full bg-blue-300/15 blur-3xl -z-10"
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">
+        <motion.div
+          style={{ y: yFloatingOrb1 }}
+          className="absolute top-40 -left-20 w-80 h-80 rounded-full bg-sky-300/20 blur-3xl"
+        />
+        <motion.div
+          style={{ y: yFloatingOrb2 }}
+          className="absolute top-[700px] -right-20 w-96 h-96 rounded-full bg-blue-300/15 blur-3xl"
+        />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-20 sm:space-y-28">
         {/* ─── 1. Services Hero ─── */}
@@ -350,8 +471,8 @@ export function Services() {
             </p>
           </motion.div>
 
-          {/* 4 Steps in Horizontal Grid with Connectors */}
-          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Desktop/Tablet: 4 Steps in Horizontal Grid with Connectors */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
             {/* Desktop connecting track line behind cards */}
             <div
               className="hidden lg:block absolute top-12 left-12 right-12 h-0.5 bg-gradient-to-r from-sky-200 via-[#323192]/30 to-sky-200 -z-10"
@@ -399,6 +520,9 @@ export function Services() {
               );
             })}
           </div>
+
+          {/* Mobile: Layered Card Transition Effect */}
+          <MobileStepCards steps={steps} shouldReduceMotion={shouldReduceMotion} />
         </section>
 
         {/* ─── 4. Closing CTA ─── */}
