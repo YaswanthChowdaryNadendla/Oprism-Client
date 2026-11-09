@@ -34,7 +34,7 @@ export function ShutterText({
   once = true,
 }: ShutterTextProps) {
   const containerRef = useRef<HTMLElement>(null);
-  const isInView = useInView(containerRef, { once, margin: "-40px" });
+  const isInView = useInView(containerRef, { once, amount: 0.05 });
   const shouldReduceMotion = useReducedMotion();
 
   const containerVariants = {
@@ -52,7 +52,7 @@ export function ShutterText({
       ? { opacity: 1, y: 0 }
       : {
           opacity: 0,
-          y: "115%",
+          y: "125%",
         },
     visible: {
       opacity: 1,
@@ -81,7 +81,7 @@ export function ShutterText({
                   {word.split("").map((char, charIndex) => (
                     <span
                       key={`${prefix}-c-${lineIndex}-${wordIndex}-${charIndex}`}
-                      className="inline-block overflow-hidden align-baseline py-[0.08em] -my-[0.08em]"
+                      className="inline-block overflow-hidden align-baseline py-[0.35em] -my-[0.35em] px-[0.02em] -mx-[0.02em]"
                     >
                       <motion.span
                         variants={charVariants}

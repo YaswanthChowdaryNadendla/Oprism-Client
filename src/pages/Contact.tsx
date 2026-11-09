@@ -236,10 +236,10 @@ export function Contact() {
           <ShutterText
             as="h1"
             style={{ fontFamily: "'Comfortaa', sans-serif" }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.15] mb-6"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.2] sm:leading-[1.15] mb-6"
           >
             Let's Make Something <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-[#0077b6] via-[#0284c7] to-[#323192] bg-clip-text text-transparent">
+            <span className="inline-block bg-gradient-to-r from-[#0077b6] via-[#0284c7] to-[#323192] bg-clip-text text-transparent">
               Refreshing Happen.
             </span>
           </ShutterText>
