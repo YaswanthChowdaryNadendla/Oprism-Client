@@ -77,7 +77,7 @@ oprism/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/oprism.git
+git clone https://github.com/YOUR_USERNAME/oprism-client.git
 ```
 
 ### 2. Navigate to the Project
