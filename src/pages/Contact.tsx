@@ -672,7 +672,7 @@ export function Contact() {
                       whileTap={shouldReduceMotion ? {} : { scale: 0.985 }}
                       className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#0077b6] via-[#0284c7] to-[#323192] text-white font-bold text-sm shadow-lg shadow-sky-500/25 hover:shadow-xl hover:shadow-sky-500/35 transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer"
                     >
-                      <span>Send Enquiry &rarr;</span>
+                      <span>Send Enquiry</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </motion.button>
 
