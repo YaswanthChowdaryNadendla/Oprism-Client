@@ -349,8 +349,8 @@ export function Services() {
             </p>
           </motion.div>
 
-          {/* 4 Service Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {/* 4 Service Cards Grid (Compact & Proportional) */}
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {services.map((service, index) => {
               const Icon = service.icon;
               const isEven = index % 2 === 0;
@@ -365,10 +365,10 @@ export function Services() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group rounded-3xl bg-white/80 backdrop-blur-md border border-sky-100/90 shadow-sm hover:shadow-xl hover:border-sky-300/60 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden flex flex-col justify-between"
+                  className="group rounded-2xl sm:rounded-3xl bg-white/80 backdrop-blur-md border border-sky-100/90 shadow-sm hover:shadow-xl hover:border-sky-300/60 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden flex flex-col justify-between h-full"
                 >
                   {/* Card Image with Parallax Zoom Container */}
-                  <div className="relative h-56 sm:h-64 overflow-hidden bg-sky-50">
+                  <div className="relative h-44 sm:h-48 md:h-52 overflow-hidden bg-sky-50">
                     <img
                       src={service.image}
                       alt={service.title}
@@ -377,32 +377,32 @@ export function Services() {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent" />
                     
                     {/* Badge */}
-                    <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[11px] font-bold text-[#323192] shadow-xs">
+                    <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] sm:text-[11px] font-bold text-[#323192] shadow-xs">
                       <Icon className="w-3.5 h-3.5 text-[#323192]" />
                       <span>{service.badge}</span>
                     </div>
                   </div>
 
                   {/* Card Content */}
-                  <div className="p-6 sm:p-8 flex flex-col flex-grow justify-between space-y-4">
+                  <div className="p-5 sm:p-6 flex flex-col flex-grow justify-between space-y-3">
                     <div>
                       <h3
                         style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                        className="text-xl sm:text-2xl font-bold text-slate-900 mb-2.5 group-hover:text-[#323192] transition-colors"
+                        className="text-lg sm:text-xl font-bold text-slate-900 mb-1.5 group-hover:text-[#323192] transition-colors"
                       >
                         {service.title}
                       </h3>
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal min-h-[2.5rem] flex items-center">
                         {service.description}
                       </p>
                     </div>
 
                     {/* Feature chips */}
-                    <div className="pt-2 border-t border-sky-100/70 flex flex-wrap gap-2">
+                    <div className="pt-2 border-t border-sky-100/70 flex flex-wrap gap-1.5">
                       {service.highlights.map((h) => (
                         <span
                           key={h}
-                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-700 bg-sky-50/80 px-2.5 py-1 rounded-lg border border-sky-100/80"
+                          className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-slate-700 bg-sky-50/80 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg border border-sky-100/80"
                         >
                           <CheckCircle2 className="w-3 h-3 text-[#323192]" />
                           {h}
