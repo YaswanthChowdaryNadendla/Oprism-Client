@@ -13,8 +13,6 @@ import {
   Building2,
   PackageCheck,
   CheckCircle2,
-  Calendar,
-  Image as ImageIcon,
 } from "lucide-react";
 
 import bottleImg from "../assets/herosection.png";
@@ -42,7 +40,6 @@ export function Services() {
   const yHeroBottle = useTransform(scrollYProgress, [0, 0.3], shouldReduceMotion ? [0, 0] : [0, -45]);
   const yFloatingOrb1 = useTransform(scrollYProgress, [0, 0.4], shouldReduceMotion ? [0, 0] : [-20, 60]);
   const yFloatingOrb2 = useTransform(scrollYProgress, [0, 0.4], shouldReduceMotion ? [0, 0] : [30, -50]);
-  const yCustomShowcase = useTransform(scrollYProgress, [0.3, 0.7], shouldReduceMotion ? [0, 0] : [30, -30]);
 
   // Four primary service offerings
   const services = [
@@ -54,7 +51,7 @@ export function Services() {
       image: celebrationsImg,
       icon: Sparkles,
       badge: "Bespoke Personalization",
-      highlights: ["Names & Monograms", "Corporate Logos", "Waterproof Matte/Gloss"],
+      highlights: ["Names & Event Details", "Corporate Logos", "Waterproof Matte/Gloss"],
     },
     {
       id: "wedding-celebrations",
@@ -113,30 +110,6 @@ export function Services() {
       title: "Confirm Your Order",
       description: "Finalize your order and enjoy seamless, white-glove delivery directly to your event venue.",
       icon: Truck,
-    },
-  ];
-
-  // Customization features for the product showcase
-  const customFeatures = [
-    {
-      icon: Sparkles,
-      title: "Names & Monograms",
-      desc: "Honor guests and couples with custom typography, event titles, and personal crests.",
-    },
-    {
-      icon: Building2,
-      title: "Logos & Corporate Identity",
-      desc: "Promote your brand at conferences, investor summits, and client lounges with crisp logo reproduction.",
-    },
-    {
-      icon: Calendar,
-      title: "Dates & Milestones",
-      desc: "Commemorate specific anniversaries, wedding dates, or milestone birthdays with precision printing.",
-    },
-    {
-      icon: Droplets,
-      title: "Ice-Resistant Waterproof Labels",
-      desc: "Engineered high-durability waterproof substrates that stay flawless inside ice buckets and chillers.",
     },
   ];
 
@@ -353,91 +326,7 @@ export function Services() {
           </div>
         </section>
 
-        {/* ─── 3. Customized Bottle Experience ─── */}
-        <section className="relative rounded-3xl p-6 sm:p-10 md:p-14 bg-white/80 backdrop-blur-md border border-white/90 shadow-xl shadow-sky-950/5 overflow-hidden">
-          {/* Subtle Ambient Radial Highlight */}
-          <div className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-sky-400/20 to-indigo-500/10 blur-3xl" />
-
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left: Product Showcase Information */}
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7 space-y-6 text-center lg:text-left"
-            >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#323192]/10 text-xs font-mono font-bold uppercase tracking-wider text-[#323192]">
-                Customized Bottle Experience
-              </div>
-
-              <h2
-                style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight"
-              >
-                Make Every Bottle <br />
-                <span className="text-[#323192]">Personal.</span>
-              </h2>
-
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
-                Transform ordinary bottled water into an exquisite branded centerpiece. We collaborate
-                with hosts, event planners, and marketing directors to customize labels with bespoke
-                names, corporate logos, celebratory dates, and distinct aesthetic themes.
-              </p>
-
-              {/* 4 Feature Items */}
-              <div className="grid sm:grid-cols-2 gap-4 pt-2 text-left">
-                {customFeatures.map((feat) => {
-                  const FIcon = feat.icon;
-                  return (
-                    <div
-                      key={feat.title}
-                      className="p-4 rounded-2xl bg-white/60 border border-sky-100 shadow-xs hover:border-sky-300/60 transition-colors"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-sky-100 text-[#323192] flex items-center justify-center mb-2.5">
-                        <FIcon className="w-4 h-4" />
-                      </div>
-                      <h4 className="font-bold text-xs sm:text-sm text-slate-900 mb-1">
-                        {feat.title}
-                      </h4>
-                      <p className="text-[11px] sm:text-xs text-slate-500 leading-relaxed font-normal">
-                        {feat.desc}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
-
-            {/* Right: Layered Visual Composition with Subtle Scroll Speed Shift */}
-            <motion.div
-              style={{ y: yCustomShowcase }}
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 flex justify-center items-center"
-            >
-              <div className="relative w-full max-w-sm rounded-3xl overflow-hidden border border-sky-100 shadow-lg group">
-                <img
-                  src={celebrationsImg}
-                  alt="Personalized Oprism Bottle Showcase"
-                  className="w-full h-auto object-cover max-h-[420px] group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
-                  <span className="text-xs uppercase tracking-widest font-mono text-sky-300 font-bold">
-                    Signature Personalization
-                  </span>
-                  <p className="text-sm font-semibold text-white/95 mt-1">
-                    Tailored for weddings, birthdays &amp; executive summits
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ─── 4. How It Works (Modern Horizontal Step-Based Layout) ─── */}
+        {/* ─── 3. How It Works (Modern Horizontal Step-Based Layout) ─── */}
         <section className="space-y-12">
           {/* Header */}
           <motion.div
@@ -512,7 +401,7 @@ export function Services() {
           </div>
         </section>
 
-        {/* ─── 5. Closing CTA ─── */}
+        {/* ─── 4. Closing CTA ─── */}
         <section className="flex justify-center">
           <div className="w-full max-w-4xl rounded-3xl bg-gradient-to-br from-[#070d26] via-[#0d173d] to-[#1a255a] border border-sky-400/15 shadow-2xl shadow-indigo-950/20 px-6 sm:px-12 md:px-16 py-10 sm:py-12 md:py-14 text-center flex flex-col items-center justify-center relative overflow-hidden">
             {/* CTA Heading: reveal from left */}
