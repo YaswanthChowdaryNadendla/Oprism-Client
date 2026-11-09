@@ -234,12 +234,6 @@ export function Services() {
     },
   ];
 
-  const handleExploreClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const target = document.getElementById("services-catalog");
-    target?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div ref={containerRef} className="pt-28 sm:pt-36 pb-16 sm:pb-24 relative z-10 overflow-x-clip">
       {/* ─── Layered Ambient Water Droplets & Floating Depth Orbs ─── */}
@@ -292,23 +286,6 @@ export function Services() {
               From personalized bottles to bulk bottled-water arrangements, Oprism brings a
               refreshing touch to every occasion.
             </motion.p>
-
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="pt-2"
-            >
-              <a
-                href="#services-catalog"
-                onClick={handleExploreClick}
-                className="group inline-flex items-center gap-2.5 px-8 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <span>Explore Our Services</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-              </a>
-            </motion.div>
           </div>
 
           {/* Right Column: Premium Bottled-Water Visual (hidden on mobile, visible on tablet and desktop) */}
