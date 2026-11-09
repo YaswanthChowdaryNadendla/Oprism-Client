@@ -375,7 +375,7 @@ export function Home() {
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-tight mb-3 sm:mb-4"
             >
-              Planning an Event?
+              Have a Special Occasion Coming Up?
             </h2>
 
             {/* Description */}
@@ -397,7 +397,7 @@ export function Home() {
                 onClick={handlePlanEventClick}
                 className="group relative z-10 inline-flex items-center gap-2 sm:gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-white text-[#0a1128] hover:bg-sky-50 font-bold text-sm sm:text-base shadow-lg shadow-black/15 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
               >
-                <span>Plan Your Event</span>
+                <span>Let's Get Started</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#0a1128] transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
