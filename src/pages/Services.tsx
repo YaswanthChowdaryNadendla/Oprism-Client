@@ -190,14 +190,14 @@ export function Services() {
             </motion.div>
           </div>
 
-          {/* Right Column: Premium Bottled-Water Visual with Parallax Float */}
+          {/* Right Column: Premium Bottled-Water Visual (hidden on mobile, visible on tablet and desktop) */}
           <motion.div
             style={{ y: yHeroBottle }}
             initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex justify-center items-center relative"
+            className="hidden md:flex lg:col-span-5 justify-center items-center relative"
           >
             <div className="relative w-full max-w-sm sm:max-w-md flex items-center justify-center">
               {/* Radial glow and floating droplets */}
