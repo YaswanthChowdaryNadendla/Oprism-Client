@@ -126,13 +126,13 @@ export function Hero() {
 
         {/* 3. CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
-          <a
-            href="#collection"
+          <Link
+            to="/services"
             className="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full bg-[#323192] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#323192]/25 hover:bg-[#252478] hover:shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
           >
             Explore Oprism
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
           <Link
             to="/contact"
             className="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-full border border-sky-300/80 bg-white/90 backdrop-blur-md text-[#323192] font-bold text-xs sm:text-sm hover:bg-white hover:border-[#323192]/40 shadow-sm transition-all flex items-center justify-center gap-2"
