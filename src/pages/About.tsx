@@ -79,13 +79,13 @@ export function About() {
             </motion.div>
           </div>
 
-          {/* Right Column: Premium Bottle Visual (fade in with subtle slide from the right) */}
+          {/* Right Column: Premium Bottle Visual (hidden on mobile, visible on tablet and desktop) */}
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex justify-center items-center"
+            className="hidden md:flex lg:col-span-5 justify-center items-center"
           >
             <div className="relative w-full max-w-xs sm:max-w-sm flex items-center justify-center">
               <div className="absolute inset-0 bg-sky-200/40 rounded-full blur-3xl -z-10 pointer-events-none transform scale-90" />
