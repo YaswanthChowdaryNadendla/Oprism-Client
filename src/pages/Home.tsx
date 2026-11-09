@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, ShieldCheck, CheckCircle2, Truck } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
@@ -6,10 +6,10 @@ import { Hero } from "../components/Hero";
 import { SlidingNumber } from "../components/ui/sliding-number";
 import { MarkerHighlight } from "../components/ui/marker-highlight";
 import { TestimonialsSection, type TestimonialItem } from "../components/ui/testimonials-with-marquee";
+import { Confetti, type ConfettiHandle, OPRISM_CONFETTI_COLORS } from "../components/ui/motion-confetti";
 import celebrationsImg from "../assets/celebrations.png";
 import businessImg from "../assets/Business&Hospitality.png";
 import specialOccasionsImg from "../assets/special-occasions.jpg";
-import eventCtaBannerImg from "../assets/event-cta-banner.png";
 
 // Sample testimonials with Telugu names in English
 const sampleTestimonials: TestimonialItem[] = [
@@ -109,9 +109,14 @@ export function Home() {
   ];
 
   const shouldReduceMotion = useReducedMotion();
+  const confettiRef = useRef<ConfettiHandle>(null);
   const [stat1, setStat1] = React.useState(100);
   const [stat2, setStat2] = React.useState(100);
   const [stat3, setStat3] = React.useState(99.9);
+
+  const handlePlanEventClick = () => {
+    confettiRef.current?.fire();
+  };
 
   React.useEffect(() => {
     if (shouldReduceMotion) {
@@ -361,86 +366,40 @@ export function Home() {
         </div>
       </section>
 
-      {/* 4. Cinematic Event CTA Banner */}
-      <section className="pt-6 sm:pt-10 pb-20 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-sky-900/40 bg-[#070B19]">
-            {/* Desktop & Tablet Layout (md:flex): Cinematic Wide Composition with Left-side Text and Right-side Bottle */}
-            <div className="hidden md:flex relative min-h-[500px] lg:min-h-[540px] items-center">
-              {/* Cinematic Background Banner Image */}
-              <img
-                src={eventCtaBannerImg}
-                alt="Planning for an Event with Oprism"
-                className="absolute inset-0 w-full h-full object-cover object-[80%_center] lg:object-right select-none"
+      {/* 4. Compact Elegant Event CTA Card */}
+      <section className="pt-8 sm:pt-12 pb-16 sm:pb-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-center">
+          <div className="w-full max-w-5xl rounded-3xl bg-gradient-to-br from-[#070d26] via-[#0d173d] to-[#1a255a] border border-sky-400/15 shadow-2xl shadow-indigo-950/20 px-6 sm:px-12 md:px-16 py-10 sm:py-12 md:py-14 text-center flex flex-col items-center justify-center relative overflow-hidden">
+            {/* Heading */}
+            <h2
+              style={{ fontFamily: "'Comfortaa', sans-serif" }}
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-tight mb-3 sm:mb-4"
+            >
+              Planning an Event?
+            </h2>
+
+            {/* Description */}
+            <p className="text-sky-100/90 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-6 sm:mb-8 font-normal">
+              From weddings and celebrations to corporate gatherings, let's make your special moments more memorable with Oprism.
+            </p>
+
+            {/* CTA Button with Confetti */}
+            <div className="relative inline-flex items-center justify-center">
+              <Confetti
+                ref={confettiRef}
+                colors={OPRISM_CONFETTI_COLORS}
+                count={80}
+                spread={12}
+                className="pointer-events-none absolute -inset-24 z-20 w-[calc(100%+12rem)] h-[calc(100%+12rem)]"
               />
-
-              {/* Gradient Overlays: Ensure Left Text Readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#070B19] via-[#070B19]/90 to-transparent w-[58%] lg:w-[50%] pointer-events-none" />
-
-              {/* Ambient Aqua/Blue Glow */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-10 lg:left-16 w-72 h-72 bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
-
-              {/* Left-Aligned Heading and Glowing CTA */}
-              <div className="relative z-10 w-full px-8 md:px-12 lg:px-16 py-12 md:py-16">
-                <div className="max-w-[340px] lg:max-w-xl text-left">
-                  {/* Two-Line Exact Heading */}
-                  <h2
-                    style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                    className="text-2xl md:text-3xl lg:text-5xl font-bold text-white tracking-tight leading-[1.2] mb-6 md:mb-8"
-                  >
-                    <span className="block">Planning for an Event?</span>
-                    <span className="block mt-2 sm:mt-3 text-sky-200">
-                      Let's Make It Special with Oprism.
-                    </span>
-                  </h2>
-
-                  {/* Prominent Glowing Blue CTA Button */}
-                  <div>
-                    <Link
-                      to="/contact"
-                      className="group inline-flex items-center gap-2.5 sm:gap-3 px-7 sm:px-9 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] text-white font-bold text-sm sm:text-base shadow-[0_0_25px_rgba(59,130,246,0.55)] hover:shadow-[0_0_35px_rgba(59,130,246,0.85)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-                    >
-                      <span>Plan Your Event</span>
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1.5" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Cleanly Stacked Layout (< md) */}
-            <div className="md:hidden flex flex-col bg-[#070B19]">
-              {/* Top Text Block */}
-              <div className="p-7 sm:p-9 text-left relative z-10">
-                <div className="absolute top-0 left-0 w-48 h-48 bg-sky-500/15 rounded-full blur-2xl pointer-events-none" />
-                <h2
-                  style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                  className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-[1.2] mb-6"
-                >
-                  <span className="block">Planning for an Event?</span>
-                  <span className="block mt-2 text-sky-200">
-                    Let's Make It Special with Oprism.
-                  </span>
-                </h2>
-
-                <Link
-                  to="/contact"
-                  className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(59,130,246,0.5)] active:scale-95 transition-all"
-                >
-                  <span>Plan Your Event</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </div>
-
-              {/* Bottom Image Block: Shows the chilled bottle with splash & luxury event clearly */}
-              <div className="relative h-64 sm:h-72 w-full overflow-hidden">
-                <img
-                  src={eventCtaBannerImg}
-                  alt="Chilled Oprism Bottle for Events"
-                  className="w-full h-full object-cover object-[80%_center] select-none"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#070B19] via-transparent to-transparent h-12 pointer-events-none" />
-              </div>
+              <Link
+                to="/contact"
+                onClick={handlePlanEventClick}
+                className="group relative z-10 inline-flex items-center gap-2 sm:gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-white text-[#0a1128] hover:bg-sky-50 font-bold text-sm sm:text-base shadow-lg shadow-black/15 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+              >
+                <span>Plan Your Event</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#0a1128] transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
         </div>
