@@ -30,18 +30,18 @@ export function TestimonialsSection({
   const marqueeItems = [...testimonials, ...testimonials];
 
   return (
-    <section className={cn("relative overflow-hidden py-10 sm:py-14", className)}>
+    <section className={cn("relative overflow-hidden py-2 sm:py-4", className)}>
       {/* Section Header */}
       {title && (
-        <div className="max-w-3xl mx-auto px-4 text-center mb-8 sm:mb-12">
+        <div className="max-w-3xl mx-auto px-4 text-center mb-5 sm:mb-6">
           <h3
             style={{ fontFamily: "'Comfortaa', sans-serif" }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#0f172a] mb-3"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#0f172a] mb-2 sm:mb-2.5"
           >
             {title}
           </h3>
           {description && (
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
               {description}
             </p>
           )}
@@ -57,20 +57,20 @@ export function TestimonialsSection({
         }}
       >
         {/* Scrolling Track */}
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-4 sm:gap-6 py-4 px-2">
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-4 sm:gap-6 py-3 sm:py-4 px-2">
           {marqueeItems.map((item, index) => (
             <div
               key={`${item.author.handle}-${index}`}
-              className="w-[280px] sm:w-[340px] md:w-[360px] shrink-0 rounded-2xl bg-white/90 backdrop-blur-md border border-sky-100/90 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-sky-200 transition-all duration-300"
+              className="w-[280px] sm:w-[340px] md:w-[360px] min-h-[160px] sm:min-h-[175px] shrink-0 rounded-2xl bg-white/90 backdrop-blur-md border border-sky-100/90 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-sky-200 transition-all duration-300"
             >
-              <p className="text-slate-700 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
+              <p className="text-slate-700 text-xs sm:text-sm leading-relaxed mb-5 font-normal">
                 "{item.text}"
               </p>
               <div className="flex items-center gap-3">
                 <img
                   src={item.author.avatar}
                   alt={item.author.name}
-                  className="w-10 h-10 rounded-full object-cover border border-sky-200/80 shadow-xs bg-sky-100"
+                  className="w-10 h-10 rounded-full object-cover border border-sky-200/80 shadow-xs bg-sky-100 shrink-0"
                   loading="lazy"
                   onError={(e) => {
                     // Fallback to avatar placeholder if image fails to load
