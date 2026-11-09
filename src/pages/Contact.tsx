@@ -4,7 +4,6 @@ import {
   Phone,
   Mail,
   ArrowRight,
-  ArrowDown,
   Sparkles,
   Droplets,
   AlertCircle,
@@ -280,10 +279,12 @@ export function Contact() {
             <a
               href="#contact-form"
               onClick={handleScrollToForm}
-              className="group inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#0077b6] to-[#323192] text-white font-bold text-sm shadow-lg shadow-sky-500/25 hover:shadow-xl hover:shadow-sky-500/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+              className="group inline-flex items-center gap-1.5 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#0077b6] to-[#323192] text-white font-bold text-sm shadow-lg shadow-sky-500/25 hover:shadow-xl hover:shadow-sky-500/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
             >
-              <span>Get in Touch &darr;</span>
-              <ArrowDown className="w-4 h-4 text-sky-200 group-hover:translate-y-0.5 transition-transform" />
+              <span>Get in Touch</span>
+              <span className="text-sky-200 group-hover:translate-y-0.5 transition-transform duration-200 inline-block font-bold">
+                &darr;
+              </span>
             </a>
           </motion.div>
         </motion.div>
