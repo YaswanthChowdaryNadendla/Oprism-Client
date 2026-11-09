@@ -252,8 +252,8 @@ export function Contact() {
         </motion.div>
       </section>
 
-      {/* ─── 2. Main Two-Column Section: Get in Touch + Contact Form ─── */}
-      <section id="contact-form" className="py-12 sm:py-16 px-6 scroll-mt-24">
+      {/* ─── 2. Main Two-Column Section: Direct Channels + Contact Form ─── */}
+      <section id="contact-form" className="pt-10 pb-16 sm:pt-14 sm:pb-24 px-6 scroll-mt-24">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
@@ -591,69 +591,6 @@ export function Contact() {
 
           </div>
         </div>
-      </section>
-
-      {/* ─── 5. Closing Section ─── */}
-      <section className="py-16 sm:py-20 px-6">
-        <motion.div
-          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-[#0a1128] via-[#101942] to-[#1c1a52] text-white p-8 sm:p-12 text-center shadow-2xl shadow-slate-950/20 border border-sky-400/20 relative overflow-hidden"
-        >
-          {/* Subtle Ambient Glow */}
-          <div
-            className="absolute -top-20 -left-20 w-60 h-60 rounded-full bg-sky-500/20 blur-3xl pointer-events-none"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute -bottom-20 -right-20 w-60 h-60 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none"
-            aria-hidden="true"
-          />
-
-          <div className="relative z-10 space-y-4">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-sky-200 text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-sky-300" />
-              <ShutterText as="span" delay={0}>
-                Let's Connect
-              </ShutterText>
-            </div>
-
-            <ShutterText
-              as="h2"
-              delay={0.15}
-              style={{ fontFamily: "'Comfortaa', sans-serif" }}
-              className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight"
-            >
-              Every Great Experience Starts with a Conversation.
-            </ShutterText>
-
-            <p className="text-sm sm:text-base text-sky-100/85 max-w-xl mx-auto leading-relaxed">
-              Tell us what you have in mind. Let's plan something special with Oprism.
-            </p>
-
-            <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="https://wa.me/918500788506?text=Hi%20Oprism!%20I%20am%20planning%20for%20an%20event"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs shadow-lg shadow-emerald-500/30 transition-all hover:scale-105 active:scale-95"
-              >
-                <WhatsAppIcon className="w-4 h-4" />
-                Chat on WhatsApp
-              </a>
-
-              <a
-                href="tel:+918500788506"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/15 hover:bg-white/25 text-white font-bold text-xs border border-white/20 backdrop-blur-md transition-all hover:scale-105 active:scale-95"
-              >
-                <Phone className="w-4 h-4" />
-                Call +91 8500788506
-              </a>
-            </div>
-          </div>
-        </motion.div>
       </section>
     </div>
   );
