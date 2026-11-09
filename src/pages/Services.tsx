@@ -13,6 +13,7 @@ import {
   PackageCheck,
   CheckCircle2,
 } from "lucide-react";
+import { ShutterText } from "../components/ui/shutter-text";
 
 import bottleImg from "../assets/herosection.png";
 import celebrationsImg from "../assets/celebrations.png";
@@ -252,17 +253,14 @@ export function Services() {
         <section className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Heading, Description & CTA */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <motion.h1
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            <ShutterText
+              as="h1"
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-3xl sm:text-5xl lg:text-[56px] font-bold text-slate-900 tracking-tight leading-[1.12]"
             >
               Refreshing Solutions <br className="hidden sm:inline" />
               <span className="text-[#323192]">for Every Occasion.</span>
-            </motion.h1>
+            </ShutterText>
 
             <motion.p
               initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
@@ -330,15 +328,21 @@ export function Services() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-center max-w-2xl mx-auto space-y-3"
           >
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block">
+            <ShutterText
+              as="span"
+              delay={0}
+              className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block"
+            >
               Tailored Hydration
-            </span>
-            <h2
+            </ShutterText>
+            <ShutterText
+              as="h2"
+              delay={0.15}
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight"
             >
               Our Services
-            </h2>
+            </ShutterText>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
               Explore our curated bottled-water options engineered for celebrations, business hospitality,
               and high-volume event catering.
@@ -422,15 +426,21 @@ export function Services() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-center max-w-2xl mx-auto space-y-3"
           >
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block">
+            <ShutterText
+              as="span"
+              delay={0}
+              className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block"
+            >
               Simple 4-Step Process
-            </span>
-            <h2
+            </ShutterText>
+            <ShutterText
+              as="h2"
+              delay={0.15}
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight"
             >
               How It Works
-            </h2>
+            </ShutterText>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
               From your initial request to doorstep event delivery, we make ordering effortless.
             </p>
@@ -493,17 +503,14 @@ export function Services() {
         {/* ─── 4. Closing CTA ─── */}
         <section className="flex justify-center">
           <div className="w-full max-w-4xl rounded-3xl bg-gradient-to-br from-[#070d26] via-[#0d173d] to-[#1a255a] border border-sky-400/15 shadow-2xl shadow-indigo-950/20 px-6 sm:px-12 md:px-16 py-10 sm:py-12 md:py-14 text-center flex flex-col items-center justify-center relative overflow-hidden">
-            {/* CTA Heading: reveal from left */}
-            <motion.h2
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            {/* CTA Heading: shutter text reveal */}
+            <ShutterText
+              as="h2"
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight mb-3 sm:mb-4"
             >
               Planning Something Special?
-            </motion.h2>
+            </ShutterText>
 
             {/* Description */}
             <motion.p

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Sparkles, CheckCircle2 } from "lucide-react";
+import { ShutterText } from "../components/ui/shutter-text";
 import bottleImg from "../assets/herosection.png";
 import storyImg from "../assets/Business&Hospitality.png";
 
@@ -48,18 +49,15 @@ export function About() {
         <section className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Heading, Description & Button */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
-            {/* Heading: slide in from the left */}
-            <motion.h1
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            {/* Heading: shutter text reveal */}
+            <ShutterText
+              as="h1"
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-3xl sm:text-5xl lg:text-[54px] font-bold text-slate-900 tracking-tight leading-[1.15]"
             >
               More Than Water. <br className="hidden sm:inline" />
               <span className="text-[#323192]">A Promise of Purity.</span>
-            </motion.h1>
+            </ShutterText>
 
             {/* Description & Button: reveal from the right */}
             <motion.div
@@ -116,16 +114,22 @@ export function About() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-6 space-y-4 text-center lg:text-left"
             >
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block">
+              <ShutterText
+                as="span"
+                delay={0}
+                className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block"
+              >
                 Our Story
-              </span>
-              <h2
+              </ShutterText>
+              <ShutterText
+                as="h2"
+                delay={0.15}
                 style={{ fontFamily: "'Comfortaa', sans-serif" }}
                 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-snug"
               >
                 A Refreshing Idea. <br />
                 <span className="text-[#323192]">A Distinctive Experience.</span>
-              </h2>
+              </ShutterText>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
                 Founded with a purpose to redefine how hydration is experienced at gatherings, Oprism
                 was created to unite pristine mineral quality with refined presentation. We believe
@@ -165,15 +169,21 @@ export function About() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-center max-w-xl mx-auto space-y-2"
           >
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block">
+            <ShutterText
+              as="span"
+              delay={0}
+              className="text-xs font-mono font-bold uppercase tracking-wider text-[#323192] block"
+            >
               Core Principles
-            </span>
-            <h2
+            </ShutterText>
+            <ShutterText
+              as="h2"
+              delay={0.15}
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight"
             >
               Our Values
-            </h2>
+            </ShutterText>
           </motion.div>
 
           {/* Three Value Items: mobile sticky stacking, desktop 3-col grid */}
@@ -208,17 +218,14 @@ export function About() {
         {/* ─── 4. Closing CTA ─── */}
         <section className="flex justify-center">
           <div className="w-full max-w-4xl rounded-3xl bg-gradient-to-br from-[#070d26] via-[#0d173d] to-[#1a255a] border border-sky-400/15 shadow-2xl shadow-indigo-950/20 px-6 sm:px-12 md:px-16 py-10 sm:py-12 md:py-14 text-center flex flex-col items-center justify-center relative overflow-hidden">
-            {/* CTA Heading: reveal from left */}
-            <motion.h2
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            {/* CTA Heading: shutter text reveal */}
+            <ShutterText
+              as="h2"
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight mb-6 sm:mb-8"
             >
               Make Every Moment Refreshing.
-            </motion.h2>
+            </ShutterText>
 
             {/* CTA Button: reveal from right */}
             <motion.div

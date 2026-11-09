@@ -11,6 +11,7 @@ import {
   Clock,
   ShieldCheck,
 } from "lucide-react";
+import { ShutterText } from "../components/ui/shutter-text";
 import prismImg from "../assets/prism-crystal.png";
 
 /**
@@ -231,11 +232,9 @@ export function Contact() {
           style={{ y: yHeroElements }}
           className="max-w-4xl mx-auto text-center relative z-10"
         >
-          {/* Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          {/* Heading: shutter text reveal */}
+          <ShutterText
+            as="h1"
             style={{ fontFamily: "'Comfortaa', sans-serif" }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.15] mb-6"
           >
@@ -243,7 +242,7 @@ export function Contact() {
             <span className="bg-gradient-to-r from-[#0077b6] via-[#0284c7] to-[#323192] bg-clip-text text-transparent">
               Refreshing Happen.
             </span>
-          </motion.h1>
+          </ShutterText>
 
           {/* Description */}
           <motion.p
@@ -300,15 +299,21 @@ export function Contact() {
                     />
                   </div>
                   <div>
-                    <h2
+                    <ShutterText
+                      as="h2"
+                      delay={0.1}
                       style={{ fontFamily: "'Comfortaa', sans-serif" }}
                       className="text-xl sm:text-2xl font-bold text-slate-900"
                     >
                       Get in Touch
-                    </h2>
-                    <span className="text-xs font-semibold text-[#0077b6] uppercase tracking-wider">
+                    </ShutterText>
+                    <ShutterText
+                      as="span"
+                      delay={0}
+                      className="text-xs font-semibold text-[#0077b6] uppercase tracking-wider block"
+                    >
                       Direct Communication
-                    </span>
+                    </ShutterText>
                   </div>
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed">
@@ -441,14 +446,18 @@ export function Contact() {
                 <div className="mb-6">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 text-[#0077b6] text-xs font-bold uppercase tracking-wider mb-2">
                     <Sparkles className="w-3.5 h-3.5" />
-                    Enquiry Form
+                    <ShutterText as="span" delay={0}>
+                      Enquiry Form
+                    </ShutterText>
                   </div>
-                  <h3
+                  <ShutterText
+                    as="h3"
+                    delay={0.15}
                     style={{ fontFamily: "'Comfortaa', sans-serif" }}
                     className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2"
                   >
                     Send an Enquiry
-                  </h3>
+                  </ShutterText>
                   <p className="text-xs sm:text-sm text-slate-600">
                     Fill in your event details below. We'll assemble your requirements and connect with you directly via WhatsApp.
                   </p>
@@ -696,15 +705,19 @@ export function Contact() {
           <div className="relative z-10 space-y-4">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-sky-200 text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-sky-300" />
-              Let's Connect
+              <ShutterText as="span" delay={0}>
+                Let's Connect
+              </ShutterText>
             </div>
 
-            <h2
+            <ShutterText
+              as="h2"
+              delay={0.15}
               style={{ fontFamily: "'Comfortaa', sans-serif" }}
               className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight"
             >
               Every Great Experience Starts with a Conversation.
-            </h2>
+            </ShutterText>
 
             <p className="text-sm sm:text-base text-sky-100/85 max-w-xl mx-auto leading-relaxed">
               Tell us what you have in mind. Let's plan something special with Oprism.
