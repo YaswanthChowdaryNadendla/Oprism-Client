@@ -8,11 +8,9 @@ import {
   AlertCircle,
   ExternalLink,
   CheckCircle2,
-  Clock,
   ShieldCheck,
 } from "lucide-react";
 import { ShutterText } from "../components/ui/shutter-text";
-import prismImg from "../assets/prism-crystal.png";
 
 /**
  * Official WhatsApp vector icon
@@ -30,27 +28,6 @@ function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   );
 }
 
-/**
- * Official Instagram vector icon
- */
-function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-    </svg>
-  );
-}
 
 // Available Enquiry Types
 const ENQUIRY_TYPES = [
@@ -280,47 +257,14 @@ export function Contact() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* ─── LEFT COLUMN: Get in Touch & Social Connection (reveals from left) ─── */}
+            {/* ─── LEFT COLUMN: Direct Communication Channels (reveals from left) ─── */}
             <motion.div
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 space-y-6"
+              className="lg:col-span-5 lg:sticky lg:top-28 space-y-4"
             >
-              {/* Header card */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-white/80 backdrop-blur-md border border-white/90 shadow-xl shadow-sky-950/5">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center shrink-0">
-                    <img
-                      src={prismImg}
-                      alt="Oprism"
-                      className="w-6 h-6 object-contain"
-                    />
-                  </div>
-                  <div>
-                    <ShutterText
-                      as="h2"
-                      delay={0.1}
-                      style={{ fontFamily: "'Comfortaa', sans-serif" }}
-                      className="text-xl sm:text-2xl font-bold text-slate-900"
-                    >
-                      Get in Touch
-                    </ShutterText>
-                    <ShutterText
-                      as="span"
-                      delay={0}
-                      className="text-xs font-semibold text-[#0077b6] uppercase tracking-wider block"
-                    >
-                      Direct Communication
-                    </ShutterText>
-                  </div>
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Have an upcoming celebration, corporate requirement, or inquiry? Connect with us directly through phone, email, or instant WhatsApp messaging.
-                </p>
-              </div>
-
               {/* Three Compact Contact Cards */}
               <div className="space-y-3.5">
                 {/* 1. Call Us */}
@@ -390,40 +334,6 @@ export function Contact() {
                   </div>
                   <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-colors" />
                 </motion.a>
-              </div>
-
-              {/* ─── 4. Social Media Section ─── */}
-              <div className="p-6 rounded-3xl bg-gradient-to-br from-white/90 to-sky-50/70 backdrop-blur-md border border-sky-100 shadow-md shadow-sky-950/5">
-                <span className="text-xs font-bold text-slate-400 tracking-wider uppercase block mb-3">
-                  Connect With Us Online
-                </span>
-                <div className="grid grid-cols-2 gap-3">
-                  {/* Instagram */}
-                  <a
-                    href="https://www.instagram.com/oprism.water/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-sky-100 hover:border-pink-300 hover:bg-pink-50/30 text-slate-700 hover:text-pink-600 transition-all group"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-pink-50 text-pink-500 group-hover:bg-pink-500 group-hover:text-white flex items-center justify-center transition-colors">
-                      <InstagramIcon className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-semibold">Instagram</span>
-                  </a>
-
-                  {/* WhatsApp Contact */}
-                  <a
-                    href="https://wa.me/918500788506?text=Hi%20Oprism!%20I%20am%20planning%20for%20an%20event"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-emerald-100 hover:border-emerald-300 hover:bg-emerald-50/30 text-slate-700 hover:text-emerald-600 transition-all group"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center transition-colors">
-                      <WhatsAppIcon className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-semibold">WhatsApp</span>
-                  </a>
-                </div>
               </div>
 
               {/* Quick Trust Reassurance */}
