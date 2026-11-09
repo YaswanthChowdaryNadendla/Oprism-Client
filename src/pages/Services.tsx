@@ -8,7 +8,6 @@ import {
   FileText,
   Calculator,
   Truck,
-  Droplets,
   Heart,
   Building2,
   PackageCheck,
@@ -253,17 +252,6 @@ export function Services() {
         <section className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Heading, Description & CTA */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-sky-300/70 bg-white/70 backdrop-blur-md shadow-xs text-xs font-semibold text-[#323192]"
-            >
-              <Droplets className="w-3.5 h-3.5 text-[#323192]" />
-              <span>Bespoke Mineral Hydration Solutions</span>
-            </motion.div>
-
             <motion.h1
               initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}

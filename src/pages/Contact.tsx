@@ -5,7 +5,6 @@ import {
   Mail,
   ArrowRight,
   Sparkles,
-  Droplets,
   AlertCircle,
   ExternalLink,
   CheckCircle2,
@@ -232,19 +231,6 @@ export function Contact() {
           style={{ y: yHeroElements }}
           className="max-w-4xl mx-auto text-center relative z-10"
         >
-          {/* Subtle Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-300/60 bg-white/70 backdrop-blur-md shadow-sm mb-6"
-          >
-            <Droplets className="w-3.5 h-3.5 text-[#0077b6]" />
-            <span className="text-xs font-bold text-[#323192] tracking-wider uppercase">
-              Get In Touch &bull; Direct WhatsApp Concierge
-            </span>
-          </motion.div>
-
           {/* Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
